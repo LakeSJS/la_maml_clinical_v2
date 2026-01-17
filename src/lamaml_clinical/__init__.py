@@ -1,4 +1,4 @@
-"""LA-MAML Clinical: Continual Meta-Learning for Clinical NLP."""
+"""LA-MAML Clinical: Lookahead MAML for continual learning in clinical NLP."""
 
 __version__ = "0.2.0"
 

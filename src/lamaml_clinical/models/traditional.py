@@ -13,7 +13,7 @@ class TraditionalModule(BaseModule):
     """
     Traditional fine-tuning module with optional replay buffer population.
 
-    This module performs standard supervised learning with AdamW optimizer.
+    This module performs standard supervised learning with SGD optimizer.
     It populates the replay buffer during training (first epoch only) but
     does not use it for training - the buffer is maintained for transfer
     to meta-learning modules.
@@ -21,7 +21,7 @@ class TraditionalModule(BaseModule):
     Args:
         model: The underlying transformer model
         tokenizer: Tokenizer for the model
-        learning_rate: Learning rate for AdamW optimizer
+        learning_rate: Learning rate for SGD optimizer
         buffer_size: Size of the replay buffer
         local_sample_limit: Optional limit on samples per training phase
     """
@@ -83,5 +83,5 @@ class TraditionalModule(BaseModule):
         return loss
 
     def configure_optimizers(self) -> torch.optim.Optimizer:
-        """Configure AdamW optimizer."""
-        return torch.optim.AdamW(self.parameters(), lr=self.learning_rate)
+        """Configure SGD optimizer."""
+        return torch.optim.SGD(self.parameters(), lr=self.learning_rate)

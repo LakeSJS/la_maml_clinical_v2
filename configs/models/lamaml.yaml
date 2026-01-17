@@ -1,4 +1,4 @@
-# LA-MAML (Learning-rate Adaptive MAML) configuration
+# LA-MAML (Lookahead MAML) configuration
 
 model:
   type: lamaml

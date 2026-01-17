@@ -8,9 +8,9 @@ This repository implements continual learning approaches for 30-day hospital rea
 
 ### Methods
 
-- **Traditional Fine-tuning**: Standard supervised learning baseline
-- **CMAML**: Continual Model-Agnostic Meta-Learning with experience replay
-- **LA-MAML**: Learning-rate Adaptive MAML with per-parameter learnable learning rates
+- **Traditional Fine-tuning**: Standard supervised learning baseline with SGD optimizer
+- **CMAML**: Continuous Model-Agnostic Meta-Learning with experience replay
+- **LA-MAML**: Lookahead MAML with per-parameter learnable learning rates
 
 ## Installation
 
@@ -128,17 +128,17 @@ python scripts/run_experiment.py \
 
 ### TraditionalModule
 
-Standard fine-tuning with AdamW optimizer. Populates replay buffer for use by meta-learning modules.
+Standard fine-tuning with SGD optimizer. Populates replay buffer for use by meta-learning modules.
 
 ### CmamlModule
 
-Continual MAML with:
+Continuous MAML with:
 - Inner loop: One-sample-at-a-time gradient descent
 - Outer loop: Meta-optimization on current + replay buffer samples
 
 ### LamamlModule
 
-LA-MAML with per-parameter learnable learning rates:
+Lookahead MAML with per-parameter learnable learning rates:
 - Each model parameter has its own learnable learning rate
 - Two optimizers: meta-optimizer (model weights) + LR optimizer (learning rates)
 - Gradient clipping for stability

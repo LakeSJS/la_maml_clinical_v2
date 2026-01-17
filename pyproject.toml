@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "lamaml-clinical"
 version = "0.2.0"
-description = "LA-MAML for Continual Learning in Clinical NLP"
+description = "Lookahead MAML for Continual Learning in Clinical NLP"
 readme = "README.md"
 requires-python = ">=3.9"
 license = {text = "MIT"}

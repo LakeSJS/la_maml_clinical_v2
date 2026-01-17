@@ -1,4 +1,4 @@
-# CMAML (Continual Model-Agnostic Meta-Learning) configuration
+# CMAML (Continuous Model-Agnostic Meta-Learning) configuration
 
 model:
   type: cmaml

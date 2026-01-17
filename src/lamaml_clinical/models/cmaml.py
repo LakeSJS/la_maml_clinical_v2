@@ -1,4 +1,4 @@
-"""Continual Model-Agnostic Meta-Learning (CMAML) module."""
+"""Continuous Model-Agnostic Meta-Learning (CMAML) module."""
 
 from __future__ import annotations
 
@@ -12,7 +12,7 @@ from lamaml_clinical.models.base import BaseModule
 
 class CmamlModule(BaseModule):
     """
-    Continual MAML module with inner/outer loop optimization.
+    Continuous MAML module with inner/outer loop optimization.
 
     Implements MAML-style meta-learning with:
     - Inner loop: One-sample-at-a-time gradient descent

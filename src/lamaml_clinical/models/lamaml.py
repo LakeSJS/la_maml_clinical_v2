@@ -1,4 +1,4 @@
-"""Learning-rate Adaptive MAML (LA-MAML) module."""
+"""Lookahead MAML (LA-MAML) module."""
 
 from __future__ import annotations
 

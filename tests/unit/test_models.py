@@ -101,7 +101,7 @@ class TestTraditionalModule:
             learning_rate=test_config["learning_rate"],
         )
         optimizer = module.configure_optimizers()
-        assert isinstance(optimizer, torch.optim.AdamW)
+        assert isinstance(optimizer, torch.optim.SGD)
 
 
 class TestCmamlModule:
