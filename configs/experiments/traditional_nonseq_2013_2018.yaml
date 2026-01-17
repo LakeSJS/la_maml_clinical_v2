@@ -1,0 +1,23 @@
+# Traditional non-sequential training on 2013-2018 data
+# This is the baseline model used to initialize sequential experiments
+
+experiment_name: "traditional-nonsequential-2013-2018"
+
+model:
+  type: traditional
+
+training:
+  max_epochs: 20
+  sequential: false
+  batch_size: 16
+
+data:
+  train_years: [2013, 2014, 2015, 2016, 2017, 2018]
+  validation_years: [2013, 2014, 2015, 2016, 2017, 2018]
+  test_years: [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024]
+  sequential_training: false
+  sequential_validation: false
+  sequential_test: true
+
+initialization:
+  from_checkpoint: false

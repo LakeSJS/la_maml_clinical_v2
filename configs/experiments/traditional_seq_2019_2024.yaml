@@ -1,0 +1,24 @@
+# Traditional sequential fine-tuning on 2019-2024
+# Initialized from the 2013-2018 baseline checkpoint
+
+experiment_name: "traditional-sequential-2019-2024"
+
+model:
+  type: traditional
+
+training:
+  max_epochs: 20
+  sequential: true
+  batch_size: 4
+
+data:
+  train_years: [2019, 2020, 2021, 2022, 2023, 2024]
+  validation_years: [2019, 2020, 2021, 2022, 2023, 2024]
+  test_years: [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024]
+  sequential_training: true
+  sequential_validation: true
+  sequential_test: true
+
+initialization:
+  from_checkpoint: true
+  checkpoint_pattern: "{checkpoints_dir}/{project}/traditional-nonsequential-2013-2018/seed-{seed}/best-checkpoint.ckpt"

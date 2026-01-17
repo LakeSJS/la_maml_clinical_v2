@@ -1,0 +1,8 @@
+# LA-MAML (Learning-rate Adaptive MAML) configuration
+
+model:
+  type: lamaml
+  alpha_0: 1.0e-5        # Initial per-parameter learning rate
+  nu_lr: 1.0e-6          # Learning rate for learning rates
+  buffer_size: 500
+  gradient_clip_norm: 2.0

@@ -1,0 +1,6 @@
+# Traditional fine-tuning model configuration
+
+model:
+  type: traditional
+  learning_rate: 1.0e-5
+  buffer_size: 500

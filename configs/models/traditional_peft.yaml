@@ -1,0 +1,15 @@
+# Traditional fine-tuning with PEFT (LoRA) configuration
+
+model:
+  type: traditional
+  learning_rate: 1.0e-5
+  buffer_size: 500
+
+  # PEFT configuration
+  use_peft: true
+  peft_method: lora      # Currently only LoRA is supported
+  lora_r: 8              # LoRA rank (lower = fewer parameters)
+  lora_alpha: 16         # LoRA scaling factor (typically 2x rank)
+  lora_dropout: 0.1      # Dropout for LoRA layers
+  lora_target_modules: ["query", "value"]  # null for auto-detect
+  lora_bias: none        # Options: none, all, lora_only

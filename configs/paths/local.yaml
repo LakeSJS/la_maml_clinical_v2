@@ -1,0 +1,11 @@
+# Local development paths
+# Override with environment variables if needed
+
+paths:
+  base_model_id: ${oc.env:NYUTRON_MODEL_DIR,~/.cache/huggingface/nyutron_small}
+  tokenizer_path: ${oc.env:NYUTRON_TOKENIZER_DIR,~/.cache/huggingface/nyutron_tokenizer}
+  data_dir: ${oc.env:LAMAML_DATA_DIR,./data/temporal_splits}
+  checkpoints_dir: ${oc.env:LAMAML_CHECKPOINTS_DIR,./checkpoints}
+  results_dir: ${oc.env:LAMAML_RESULTS_DIR,./results}
+  wandb_dir: ${oc.env:WANDB_DIR,./wandb}
+  logs_dir: ${oc.env:LAMAML_LOGS_DIR,./logs}

@@ -1,0 +1,27 @@
+# Base configuration - default values inherited by all experiments
+
+training:
+  batch_size: 4
+  max_epochs: 10
+  early_stopping_patience: 3
+  progress_bar: false
+  precision: "32"
+  accelerator: gpu
+  devices: 1
+  sequential: true
+
+data:
+  max_len: 512
+  num_workers: 0
+  sequential_training: true
+  sequential_validation: true
+  sequential_test: true
+
+model:
+  buffer_size: 500
+  local_sample_limit: null
+  gradient_clip_norm: 2.0
+
+wandb:
+  project: "NYUtron-temporal-falloff"
+  enabled: true

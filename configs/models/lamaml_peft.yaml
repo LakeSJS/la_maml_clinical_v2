@@ -1,0 +1,17 @@
+# LA-MAML with PEFT (LoRA) configuration
+
+model:
+  type: lamaml
+  alpha_0: 1.0e-5        # Initial per-parameter learning rate
+  nu_lr: 1.0e-6          # Learning rate for learning rates
+  buffer_size: 500
+  gradient_clip_norm: 2.0
+
+  # PEFT configuration
+  use_peft: true
+  peft_method: lora      # Currently only LoRA is supported
+  lora_r: 8              # LoRA rank (lower = fewer parameters)
+  lora_alpha: 16         # LoRA scaling factor (typically 2x rank)
+  lora_dropout: 0.1      # Dropout for LoRA layers
+  lora_target_modules: ["query", "value"]  # null for auto-detect
+  lora_bias: none        # Options: none, all, lora_only
