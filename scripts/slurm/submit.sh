@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=lamaml_exp
-#SBATCH --output=%x_%j.log
+#SBATCH --output=logs/%x_%j.log
 #SBATCH --partition=a100_short
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
@@ -72,9 +72,8 @@ conda activate "${CONDA_ENV:-amazon_fashion_env}"
 # Enable CUDA DSA for better error messages
 export TORCH_USE_CUDA_DSA=1
 
-# Find project root (script is in scripts/slurm/)
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(dirname "$(dirname "$SCRIPT_DIR")")"
+# Find project root 
+PROJECT_ROOT="${SLURM_SUBMIT_DIR}"
 
 # Load environment variables from .env if it exists
 if [ -f "$PROJECT_ROOT/.env" ]; then
