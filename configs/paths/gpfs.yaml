@@ -5,7 +5,7 @@ paths:
   base_model_id: ${oc.env:NYUTRON_MODEL_DIR,/gpfs/data/oermannlab/NYUTron/model_zoos/nyutron_small/checkpoint-736000}
   tokenizer_path: ${oc.env:NYUTRON_TOKENIZER_DIR,/gpfs/data/oermannlab/NYUTron/tokenizer_zoo/vocab50000wordpiece}
   data_dir: ${oc.env:LAMAML_DATA_DIR,/gpfs/data/oermannlab/private_data/nyutron_five_task_classification/readmission_lake/temporal_maml_splits}
-  checkpoints_dir: ${oc.env:LAMAML_CHECKPOINTS_DIR,/gpfs/data/oermannlab/users/slj9342/LA-MAML_clinical/checkpoints}
-  results_dir: ${oc.env:LAMAML_RESULTS_DIR,/gpfs/data/oermannlab/users/slj9342/LA-MAML_clinical/results}
+  checkpoints_dir: ${oc.env:LAMAML_CHECKPOINTS_DIR,/gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/checkpoints}
+  results_dir: ${oc.env:LAMAML_RESULTS_DIR,/gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/results}
   wandb_dir: ${oc.env:WANDB_DIR,/gpfs/scratch/slj9342/wandb}
-  logs_dir: ${oc.env:LAMAML_LOGS_DIR,/gpfs/data/oermannlab/users/slj9342/LA-MAML_clinical/logs}
+  logs_dir: ${oc.env:LAMAML_LOGS_DIR,/gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/logs}
