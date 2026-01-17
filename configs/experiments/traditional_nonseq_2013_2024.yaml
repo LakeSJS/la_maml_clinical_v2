@@ -5,6 +5,7 @@ experiment_name: "traditional-nonsequential-2013-2024"
 
 model:
   type: traditional
+  use_peft: false
 
 training:
   max_epochs: 20

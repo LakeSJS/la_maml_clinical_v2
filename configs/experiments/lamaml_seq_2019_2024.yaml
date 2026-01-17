@@ -7,6 +7,13 @@ model:
   type: lamaml
   alpha_0: 1.0e-5
   nu_lr: 1.0e-6
+  use_peft: true
+  peft_method: lora
+  lora_r: 8
+  lora_alpha: 16
+  lora_dropout: 0.1
+  lora_target_modules: ["query", "value"]
+  lora_bias: none
 
 training:
   max_epochs: 10

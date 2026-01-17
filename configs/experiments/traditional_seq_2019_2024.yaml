@@ -5,6 +5,13 @@ experiment_name: "traditional-sequential-2019-2024"
 
 model:
   type: traditional
+  use_peft: true
+  peft_method: lora
+  lora_r: 8
+  lora_alpha: 16
+  lora_dropout: 0.1
+  lora_target_modules: ["query", "value"]
+  lora_bias: none
 
 training:
   max_epochs: 20
