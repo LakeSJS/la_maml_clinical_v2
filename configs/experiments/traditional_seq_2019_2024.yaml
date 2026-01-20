@@ -14,7 +14,7 @@ model:
   lora_bias: none
 
 training:
-  max_epochs: 20
+  max_epochs: 40
   sequential: true
   batch_size: 4
 
