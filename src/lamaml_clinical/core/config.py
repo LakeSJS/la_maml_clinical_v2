@@ -54,9 +54,10 @@ class DataConfig:
 class ModelConfig:
     """Configuration for model architecture and hyperparameters."""
 
-    type: str = "traditional"  # traditional, cmaml, lamaml
+    type: str = "traditional"  # traditional, cmaml, tmaml, lamaml
     learning_rate: float = 1e-5
-    inner_loop_learning_rate: float = 1e-5  # For CMAML
+    inner_loop_learning_rate: float = 1e-5  # For CMAML/TMAML
+    future_step: int = 1  # For TMAML
     alpha_0: float = 1e-5  # For LAMAML
     nu_lr: float = 1e-6  # For LAMAML
     buffer_size: int = 500
@@ -169,21 +170,25 @@ def load_config(
         paths_cfg = load_yaml(paths_path)
         merged_cfg = OmegaConf.merge(merged_cfg, paths_cfg)
 
-    # Load and merge experiment config
+    # Load experiment config first to determine model type
     if not str(experiment_config).endswith(".yaml"):
         exp_path = config_dir / "experiments" / f"{experiment_config}.yaml"
     else:
         exp_path = Path(experiment_config)
     if exp_path.exists():
         exp_cfg = load_yaml(exp_path)
-        merged_cfg = OmegaConf.merge(merged_cfg, exp_cfg)
+    else:
+        exp_cfg = OmegaConf.create({})
 
-    # Load and merge model-specific config if specified
-    model_type = OmegaConf.select(merged_cfg, "model.type", default="traditional")
+    # Load and merge model-specific config as defaults (before experiment config)
+    model_type = OmegaConf.select(exp_cfg, "model.type", default="traditional")
     model_config_path = config_dir / "models" / f"{model_type}.yaml"
     if model_config_path.exists():
         model_cfg = load_yaml(model_config_path)
         merged_cfg = OmegaConf.merge(merged_cfg, model_cfg)
+
+    # Now merge experiment config (takes precedence over model defaults)
+    merged_cfg = OmegaConf.merge(merged_cfg, exp_cfg)
 
     # Apply CLI overrides
     if overrides:
