@@ -23,5 +23,5 @@ model:
   gradient_clip_norm: 2.0
 
 wandb:
-  project: "NYUtron-temporal-falloff"
+  project: "la_maml_clinical_v2"
   enabled: true

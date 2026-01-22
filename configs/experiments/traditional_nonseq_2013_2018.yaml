@@ -8,7 +8,7 @@ model:
   use_peft: false
 
 training:
-  max_epochs: 20
+  max_epochs: 40
   sequential: false
   batch_size: 16
 

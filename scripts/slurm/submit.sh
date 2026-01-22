@@ -72,6 +72,9 @@ conda activate "${CONDA_ENV:-amazon_fashion_env}"
 # Enable CUDA DSA for better error messages
 export TORCH_USE_CUDA_DSA=1
 
+# Increase wandb init timeout (cluster network can be slow)
+export WANDB_INIT_TIMEOUT=300
+
 # Find project root 
 PROJECT_ROOT="${SLURM_SUBMIT_DIR}"
 

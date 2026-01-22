@@ -1,5 +1,5 @@
 # Traditional non-sequential training on all data (2013-2024)
-# This represents the "oracle" model with access to all data
+# This represents the "gold standard" model with access to all data, it used to tease out temporal falloff from year-to-year changes in overall task difficulty
 
 experiment_name: "traditional-nonsequential-2013-2024"
 
