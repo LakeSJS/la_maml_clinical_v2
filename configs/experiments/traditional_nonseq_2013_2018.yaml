@@ -6,6 +6,7 @@ experiment_name: "traditional-nonsequential-2013-2018"
 model:
   type: traditional
   use_peft: false
+  learning_rate: 1.0e-4
 
 training:
   max_epochs: 40

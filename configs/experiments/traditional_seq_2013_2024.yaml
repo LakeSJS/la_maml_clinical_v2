@@ -5,6 +5,7 @@ experiment_name: "traditional-sequential-2013-2024"
 
 model:
   type: traditional
+  learning_rate: 1.0e-4
   use_peft: false
   peft_method: lora
   lora_r: 8

@@ -5,8 +5,8 @@ experiment_name: "cmaml-sequential-2019-2024"
 
 model:
   type: cmaml
-  learning_rate: 1.0e-5
-  inner_loop_learning_rate: 1.0e-5
+  learning_rate: 1.0e-4
+  inner_loop_learning_rate: 1.0e-3
   use_peft: false  # PEFT incompatible with higher library used in CMAML
   peft_method: lora
   lora_r: 8
