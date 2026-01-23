@@ -1,0 +1,30 @@
+# Traditional sequential fine-tuning on 2013-2024
+# Trains from scratch, year by year
+
+experiment_name: "traditional-sequential-2013-2024"
+
+model:
+  type: traditional
+  use_peft: false
+  peft_method: lora
+  lora_r: 8
+  lora_alpha: 16
+  lora_dropout: 0.1
+  lora_target_modules: ["query", "value"]
+  lora_bias: none
+
+training:
+  max_epochs: 40
+  sequential: true
+  batch_size: 4
+
+data:
+  train_years: [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024]
+  validation_years: [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024]
+  test_years: [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024]
+  sequential_training: true
+  sequential_validation: true
+  sequential_test: true
+
+initialization:
+  from_checkpoint: false

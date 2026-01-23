@@ -1,13 +1,15 @@
-# CMAML sequential training on 2019-2024
+# TMAML sequential training on 2019-2024
 # Initialized from the 2013-2018 baseline checkpoint
+# Note: TMAML trains on (t, t+1) pairs, so year 2024 is only used as future data
 
-experiment_name: "cmaml-sequential-2019-2024"
+experiment_name: "tmaml-sequential-2019-2024"
 
 model:
-  type: cmaml
+  type: tmaml
   learning_rate: 1.0e-5
   inner_loop_learning_rate: 1.0e-5
-  use_peft: false  # PEFT incompatible with higher library used in CMAML
+  future_step: 1
+  use_peft: false  # PEFT incompatible with higher library used in TMAML
   peft_method: lora
   lora_r: 8
   lora_alpha: 16
@@ -17,7 +19,7 @@ model:
 
 training:
   max_epochs: 40
-  sequential: true
+  sequential: true  # Required for TMAML
   batch_size: 4
 
 data:
