@@ -314,6 +314,64 @@ class ExperimentRunner:
 
         return module
 
+    def _get_checkpoint_dir(self) -> Path:
+        """Get the checkpoint directory for the current experiment."""
+        return (
+            Path(self.config.paths.checkpoints_dir)
+            / self.config.wandb.project
+            / self.config.experiment_name
+            / f"seed-{self.config.seed}"
+        )
+
+    def _get_results_path(self) -> Path:
+        """Get the results file path for the current experiment."""
+        results_dir = (
+            Path(self.config.paths.results_dir)
+            / self.config.wandb.project
+            / self.config.experiment_name
+        )
+        return results_dir / f"{self.config.experiment_name}-seed-{self.config.seed}.csv"
+
+    def _find_last_completed_year(self) -> Optional[int]:
+        """
+        Find the last completed training year by checking for existing checkpoints.
+
+        Returns:
+            The last year that has a completed checkpoint, or None if no checkpoints exist.
+        """
+        checkpoint_dir = self._get_checkpoint_dir()
+        if not checkpoint_dir.exists():
+            return None
+
+        completed_years = []
+        for year in self.config.data.train_years:
+            checkpoint_path = checkpoint_dir / f"best-checkpoint-{year}.ckpt"
+            if checkpoint_path.exists():
+                completed_years.append(year)
+
+        if not completed_years:
+            return None
+
+        return max(completed_years)
+
+    def _load_existing_results(self) -> List[Dict[str, Any]]:
+        """
+        Load existing results from a previous run for resume functionality.
+
+        Returns:
+            List of result dictionaries, or empty list if no results exist.
+        """
+        results_path = self._get_results_path()
+        if not results_path.exists():
+            return []
+
+        try:
+            df = pd.read_csv(results_path)
+            return df.to_dict("records")
+        except Exception as e:
+            print(f"Warning: Could not load existing results from {results_path}: {e}")
+            return []
+
     def _save_results(
         self,
         all_results: List[Dict[str, Any]],
@@ -386,15 +444,59 @@ class ExperimentRunner:
         """Run sequential training (year-by-year)."""
         tokenizer = self._load_tokenizer()
 
-        # Load from checkpoint if specified
-        if self.config.initialization.from_checkpoint:
-            module = self._load_from_checkpoint(tokenizer)
-        else:
-            module = self._create_model(tokenizer=tokenizer)
-
+        # Handle resume from last checkpoint
+        start_year_idx = 0
         all_results = []
 
+        if self.config.training.resume:
+            last_completed_year = self._find_last_completed_year()
+            if last_completed_year is not None:
+                # Find the index of the next year to train
+                try:
+                    last_completed_idx = self.config.data.train_years.index(last_completed_year)
+                    start_year_idx = last_completed_idx + 1
+
+                    if start_year_idx >= len(self.config.data.train_years):
+                        print(f"All years already completed. Last completed year: {last_completed_year}")
+                        return
+
+                    # Load the checkpoint from the last completed year
+                    checkpoint_path = (
+                        self._get_checkpoint_dir() / f"best-checkpoint-{last_completed_year}.ckpt"
+                    )
+                    print(f"Resuming from year {last_completed_year}, checkpoint: {checkpoint_path}")
+
+                    # Load existing results to preserve them
+                    all_results = self._load_existing_results()
+                    # Filter to only include results from completed years
+                    completed_years = self.config.data.train_years[:start_year_idx]
+                    all_results = [
+                        r for r in all_results if r.get("train_year") in completed_years
+                    ]
+                    print(f"Loaded {len(all_results)} existing results from previous run")
+
+                    # Load model from checkpoint
+                    model_class = MODEL_REGISTRY[self.config.model.type]
+                    module = model_class.load_from_checkpoint(checkpoint_path)
+                    print(f"Resuming training from year {self.config.data.train_years[start_year_idx]}")
+
+                except ValueError:
+                    print(f"Warning: Last completed year {last_completed_year} not in train_years, starting fresh")
+                    start_year_idx = 0
+            else:
+                print("Resume enabled but no completed checkpoints found, starting fresh")
+
+        # Load from initialization checkpoint if specified and not resuming
+        if start_year_idx == 0:
+            if self.config.initialization.from_checkpoint:
+                module = self._load_from_checkpoint(tokenizer)
+            else:
+                module = self._create_model(tokenizer=tokenizer)
+
         for year_idx, year in enumerate(self.config.data.train_years):
+            # Skip already completed years when resuming
+            if year_idx < start_year_idx:
+                continue
             # Reset local sample counter
             module.replay_buffer.reset_local_counter()
 

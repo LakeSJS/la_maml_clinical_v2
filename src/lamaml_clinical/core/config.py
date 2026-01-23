@@ -86,6 +86,7 @@ class TrainingConfig:
     accelerator: str = "gpu"
     devices: int = 1
     sequential: bool = True
+    resume: bool = False  # Resume from last completed year in sequential training
 
 
 @dataclass
