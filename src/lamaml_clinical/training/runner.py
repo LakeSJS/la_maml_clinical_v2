@@ -12,6 +12,7 @@ import pytorch_lightning as pl
 import torch
 import wandb
 from pytorch_lightning.loggers import WandbLogger
+from pytorch_lightning.utilities import CombinedLoader
 from transformers import BertForSequenceClassification, BertTokenizer
 
 from lamaml_clinical.core.config import ExperimentConfig, load_config
@@ -21,6 +22,7 @@ from lamaml_clinical.models import (
     BaseModule,
     CmamlModule,
     LamamlModule,
+    TmamlModule,
     TraditionalModule,
 )
 
@@ -35,6 +37,7 @@ MODEL_REGISTRY: Dict[str, Type[BaseModule]] = {
     "traditional": TraditionalModule,
     "cmaml": CmamlModule,
     "lamaml": LamamlModule,
+    "tmaml": TmamlModule,
 }
 
 
@@ -191,6 +194,16 @@ class ExperimentRunner:
                 buffer_size=model_config.buffer_size,
                 local_sample_limit=model_config.local_sample_limit,
             )
+        elif model_config.type == "tmaml":
+            return model_class(
+                model=model,
+                tokenizer=tokenizer,
+                inner_loop_learning_rate=model_config.inner_loop_learning_rate,
+                learning_rate=model_config.learning_rate,
+                buffer_size=model_config.buffer_size,
+                future_step=model_config.future_step,
+                local_sample_limit=model_config.local_sample_limit,
+            )
         elif model_config.type == "lamaml":
             return model_class(
                 model=model,
@@ -320,6 +333,13 @@ class ExperimentRunner:
 
     def run(self) -> None:
         """Run the experiment based on configuration."""
+        # TMAML requires sequential mode (needs paired current/future batches)
+        if self.config.model.type == "tmaml" and not self.config.training.sequential:
+            raise ValueError(
+                "TMAML requires sequential training mode (training.sequential: true). "
+                "Non-sequential mode does not provide paired current/future batches."
+            )
+
         if self.config.training.sequential:
             self.run_sequential()
         else:
@@ -374,7 +394,7 @@ class ExperimentRunner:
 
         all_results = []
 
-        for year in self.config.data.train_years:
+        for year_idx, year in enumerate(self.config.data.train_years):
             # Reset local sample counter
             module.replay_buffer.reset_local_counter()
 
@@ -382,7 +402,38 @@ class ExperimentRunner:
             monitor = f"val_auc/dataloader_idx_{val_idx}"
 
             logger = self._create_logger(year)
-            dm = self._create_datamodule(tokenizer, train_years=[year])
+
+            # TMAML needs paired batches: current year + future year
+            if self.config.model.type == "tmaml":
+                future_idx = year_idx + self.config.model.future_step
+                if future_idx >= len(self.config.data.train_years):
+                    print(
+                        f"Skipping year {year}: TMAML requires future year at index "
+                        f"{future_idx}, but only {len(self.config.data.train_years)} "
+                        "training years are available."
+                    )
+                    break
+
+                future_year = self.config.data.train_years[future_idx]
+
+                dm_current = self._create_datamodule(tokenizer, train_years=[year])
+                dm_future = self._create_datamodule(tokenizer, train_years=[future_year])
+
+                dm_current.setup("fit")
+                dm_future.setup("fit")
+
+                current_loader = dm_current.train_dataloader()[0]
+                future_loader = dm_future.train_dataloader()[0]
+                train_loader = CombinedLoader(
+                    {"current": current_loader, "future": future_loader},
+                    mode="min_size",
+                )
+
+                dm = dm_current
+                val_dataloaders = dm_current.val_dataloader()
+            else:
+                dm = self._create_datamodule(tokenizer, train_years=[year])
+                val_dataloaders = None
             callbacks = self._create_callbacks(monitor, year)
 
             trainer = pl.Trainer(
@@ -394,7 +445,10 @@ class ExperimentRunner:
                 enable_progress_bar=self.config.training.progress_bar,
             )
 
-            trainer.fit(module, dm)
+            if self.config.model.type == "tmaml":
+                trainer.fit(module, train_dataloaders=train_loader, val_dataloaders=val_dataloaders)
+            else:
+                trainer.fit(module, dm)
             dm_results = trainer.test(ckpt_path="best", datamodule=dm)
 
             # Load best checkpoint for next year
