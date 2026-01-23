@@ -98,7 +98,7 @@ class CmamlModule(BaseModule):
                 loss_fn = self.base_criterion()
                 loss = loss_fn(logits, y)
 
-                diffopt.step(loss)
+                diffopt.step(loss, override={"lr": self.inner_loop_learning_rate})
 
                 # Update replay buffer (first epoch only)
                 if self.current_epoch == 0:
