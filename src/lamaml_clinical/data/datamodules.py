@@ -232,17 +232,10 @@ class TemporalDataModule(pl.LightningDataModule):
             self.val_loaders.append(val_loader)
 
     def _setup_test_loaders(self) -> None:
-        """Set up test dataloaders with balanced classes."""
+        """Set up test dataloaders with natural class distribution."""
         if self.test_sequentially:
             for year in self.test_years:
                 test_data = pd.read_parquet(self.data_dir / f"test_{year}.parquet")
-                # Balance test data by sampling
-                min_class_size = min(test_data["readmitted_in_30_days"].value_counts())
-                test_data = (
-                    test_data.groupby("readmitted_in_30_days")
-                    .apply(lambda x: x.sample(min_class_size))
-                    .reset_index(drop=True)
-                )
                 test_dataset = ReadmissionDataset(test_data, self.tokenizer, self.max_len)
                 test_loader = DataLoader(
                     test_dataset,
@@ -256,13 +249,6 @@ class TemporalDataModule(pl.LightningDataModule):
                 pd.read_parquet(self.data_dir / f"test_{year}.parquet")
                 for year in self.test_years
             ])
-            test_data = test_data.sample(frac=1).reset_index(drop=True)
-            min_class_size = min(test_data["readmitted_in_30_days"].value_counts())
-            test_data = (
-                test_data.groupby("readmitted_in_30_days")
-                .apply(lambda x: x.sample(min_class_size))
-                .reset_index(drop=True)
-            )
             test_dataset = ReadmissionDataset(test_data, self.tokenizer, self.max_len)
             test_loader = DataLoader(
                 test_dataset,
