@@ -500,6 +500,11 @@ class ExperimentRunner:
             # Reset local sample counter
             module.replay_buffer.reset_local_counter()
 
+            if year not in self.config.data.validation_years:
+                raise ValueError(
+                    f"Training year {year} not found in validation_years. "
+                    f"Train years must be a subset of validation years for monitoring."
+                )
             val_idx = self.config.data.validation_years.index(year)
             monitor = f"val_auc/dataloader_idx_{val_idx}"
 
