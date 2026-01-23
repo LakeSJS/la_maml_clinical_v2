@@ -101,6 +101,11 @@ class BaseModule(pl.LightningModule):
         dataloader_idx: int = 0,
     ) -> torch.Tensor:
         """Validation step computing loss and AUC."""
+        # Reset metric when dataloader changes to compute per-year AUC
+        if not hasattr(self, "_val_dl_idx") or self._val_dl_idx != dataloader_idx:
+            self.val_auc.reset()
+            self._val_dl_idx = dataloader_idx
+
         if isinstance(batch, list):
             batch = batch[dataloader_idx]
 
@@ -131,6 +136,11 @@ class BaseModule(pl.LightningModule):
         dataloader_idx: int = 0,
     ) -> None:
         """Test step computing loss and AUC."""
+        # Reset metric when dataloader changes to compute per-year AUC
+        if not hasattr(self, "_test_dl_idx") or self._test_dl_idx != dataloader_idx:
+            self.test_auc.reset()
+            self._test_dl_idx = dataloader_idx
+
         if isinstance(batch, list):
             batch = batch[dataloader_idx]
 
