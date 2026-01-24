@@ -35,7 +35,7 @@ class TraditionalModule(BaseModule):
         local_sample_limit: Optional[int] = None,
     ):
         super().__init__(model, tokenizer, learning_rate, buffer_size, local_sample_limit)
-        self.save_hyperparameters(ignore=["model", "tokenizer"])
+        self.save_hyperparameters()
 
     def training_step(
         self,

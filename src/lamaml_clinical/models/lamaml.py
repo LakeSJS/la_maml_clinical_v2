@@ -65,7 +65,7 @@ class LamamlModule(BaseModule):
         self.nu_lr = nu_lr
         self.alpha_0 = alpha_0
         self.automatic_optimization = False
-        self.save_hyperparameters(ignore=["model", "tokenizer"])
+        self.save_hyperparameters()
 
         # Learnable learning rates for each parameter
         self.learnable_lrs = nn.ParameterList([

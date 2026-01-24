@@ -39,7 +39,7 @@ class CmamlModule(BaseModule):
         super().__init__(model, tokenizer, learning_rate, buffer_size, local_sample_limit)
         self.inner_loop_learning_rate = inner_loop_learning_rate
         self.automatic_optimization = False
-        self.save_hyperparameters(ignore=["model", "tokenizer"])
+        self.save_hyperparameters()
 
         self.meta_optimizer = torch.optim.SGD(model.parameters(), lr=self.learning_rate)
 

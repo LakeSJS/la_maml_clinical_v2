@@ -43,7 +43,7 @@ class BaseModule(pl.LightningModule):
         self.val_auc = BinaryAUROC()
         self.test_auc = BinaryAUROC()
         self.replay_buffer = ReplayBuffer(buffer_size, local_sample_limit)
-        self.save_hyperparameters(ignore=["model", "tokenizer"])
+        self.save_hyperparameters()
 
     def on_save_checkpoint(self, checkpoint: Dict[str, Any]) -> None:
         """Save replay buffer state to checkpoint."""
