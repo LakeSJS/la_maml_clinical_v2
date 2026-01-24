@@ -1,0 +1,64 @@
+============================================
+Job ID: 17639508
+Job Name: lamaml_exp
+Node: a100-8003
+Partition: oermannlab
+Start time: Fri Jan 23 17:38:38 EST 2026
+Config: tmaml_seq_2013_2024
+Seed: 12
+Paths: gpfs
+============================================
+Running: python /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/scripts/run_experiment.py --config tmaml_seq_2013_2024 --paths gpfs --seed 12
+============================================
+[rank: 0] Global seed set to 12
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at /gpfs/data/oermannlab/NYUTron/model_zoos/nyutron_small/checkpoint-736000 and are newly initialized: ['bert.pooler.dense.bias', 'bert.pooler.dense.weight', 'classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+wandb: Currently logged in as: lakej98 (lakej98-nyu-langone-health) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.19.8
+wandb: Run data is saved locally in /gpfs/scratch/slj9342/wandb/wandb/run-20260123_173943-z00bjveo
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run tmaml-sequential-2013-2024-2013-seed-12
+wandb: ⭐️ View project at https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2
+wandb: 🚀 View run at https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2/runs/z00bjveo
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+Traceback (most recent call last):
+  File "/gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/scripts/run_experiment.py", line 37, in <module>
+    main()
+  File "/gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/src/lamaml_clinical/training/runner.py", line 645, in main
+    runner.run()
+  File "/gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/src/lamaml_clinical/training/runner.py", line 402, in run
+    self.run_sequential()
+  File "/gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/src/lamaml_clinical/training/runner.py", line 556, in run_sequential
+    trainer.fit(module, train_dataloaders=train_loader, val_dataloaders=val_dataloaders)
+  File "/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/trainer/trainer.py", line 520, in fit
+    call._call_and_handle_interrupt(
+  File "/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/trainer/call.py", line 44, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/trainer/trainer.py", line 559, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/trainer/trainer.py", line 893, in _run
+    self.strategy.setup_environment()
+  File "/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/strategies/strategy.py", line 127, in setup_environment
+    self.accelerator.setup_device(self.root_device)
+  File "/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/accelerators/cuda.py", line 43, in setup_device
+    _check_cuda_matmul_precision(device)
+  File "/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/lightning_fabric/accelerators/cuda.py", line 345, in _check_cuda_matmul_precision
+    major, _ = torch.cuda.get_device_capability(device)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/torch/cuda/__init__.py", line 430, in get_device_capability
+    prop = get_device_properties(device)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/torch/cuda/__init__.py", line 444, in get_device_properties
+    _lazy_init()  # will define _get_device_properties
+    ^^^^^^^^^^^^
+  File "/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/torch/cuda/__init__.py", line 293, in _lazy_init
+    torch._C._cuda_init()
+RuntimeError: Unexpected error from cudaGetDeviceCount(). Did you run some cuda functions before calling NumCudaDevices() that might have already set an error? Error 802: system not yet initialized
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mtmaml-sequential-2013-2024-2013-seed-12[0m at: [34mhttps://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2/runs/z00bjveo[0m
+[1;34mwandb[0m: Find logs at: [1;35m../../../../../scratch/slj9342/wandb/wandb/run-20260123_173943-z00bjveo/logs[0m

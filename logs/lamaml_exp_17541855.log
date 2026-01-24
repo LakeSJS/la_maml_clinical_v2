@@ -1,0 +1,153 @@
+============================================
+Job ID: 17541855
+Job Name: lamaml_exp
+Node: a100-4016
+Partition: a100_short
+Start time: Wed Jan 21 15:19:05 EST 2026
+Config: traditional_nonseq_2013_2018
+Seed: 11
+Paths: gpfs
+============================================
+Running: python /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/scripts/run_experiment.py --config traditional_nonseq_2013_2018 --paths gpfs --seed 11
+============================================
+[rank: 0] Global seed set to 11
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at /gpfs/data/oermannlab/NYUTron/model_zoos/nyutron_small/checkpoint-736000 and are newly initialized: ['bert.pooler.dense.bias', 'bert.pooler.dense.weight', 'classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+wandb: Currently logged in as: lakej98 (lakej98-nyu-langone-health) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.19.8
+wandb: Run data is saved locally in /gpfs/scratch/slj9342/wandb/wandb/run-20260121_152035-j6jaetfu
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run traditional-nonsequential-2013-2018-seed-11
+wandb: ⭐️ View project at https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2
+wandb: 🚀 View run at https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2/runs/j6jaetfu
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name     | Type                          | Params
+-----------------------------------------------------------
+0 | model    | BertForSequenceClassification | 124 M 
+1 | val_auc  | BinaryAUROC                   | 0     
+2 | test_auc | BinaryAUROC                   | 0     
+-----------------------------------------------------------
+124 M     Trainable params
+0         Non-trainable params
+124 M     Total params
+497.772   Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:430: PossibleUserWarning: The dataloader, val_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 48 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:430: PossibleUserWarning: The dataloader, train_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 48 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+`Trainer.fit` stopped: `max_epochs=40` reached.
+Restoring states from the checkpoint path at /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/checkpoints/la_maml_clinical_v2/traditional-nonsequential-2013-2018/seed-11/best-checkpoint.ckpt
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+Loaded model weights from the checkpoint at /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/checkpoints/la_maml_clinical_v2/traditional-nonsequential-2013-2018/seed-11/best-checkpoint.ckpt
+SLURM auto-requeueing enabled. Setting signal handlers.
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:430: PossibleUserWarning: The dataloader, test_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 48 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 0    ┃   DataLoader 1    ┃   DataLoader 2   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.82543820142745… │ 0.83260166645050… │ 0.8377323746681… │
+│     test_loss     │ 0.52814376354217… │ 0.50528782606124… │ 0.4856557250022… │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 3    ┃   DataLoader 4    ┃   DataLoader 5   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.841341495513916 │ 0.84513318538665… │ 0.8437491655349… │
+│     test_loss     │  0.4875468313694  │ 0.48356258869171… │ 0.49483522772789 │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 6    ┃   DataLoader 7    ┃   DataLoader 8   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.83488887548446… │ 0.83023560047149… │ 0.8275761008262… │
+│     test_loss     │ 0.55691111087799… │ 0.539091944694519 │ 0.5439905524253… │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 9    ┃   DataLoader 10   ┃  DataLoader 11   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.820232629776001 │ 0.81064003705978… │ 0.8004850149154… │
+│     test_loss     │ 0.56892561912536… │ 0.583669900894165 │ 0.6128087043762… │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb:                       epoch ▁▁▁▁▁▂▂▂▂▃▃▃▃▄▄▄▄▅▅▅▅▅▅▅▅▆▆▆▆▆▆▆▆▆▇▇████
+wandb:   test_auc/dataloader_idx_0 ▁
+wandb:   test_auc/dataloader_idx_1 ▁
+wandb:  test_auc/dataloader_idx_10 ▁
+wandb:  test_auc/dataloader_idx_11 ▁
+wandb:   test_auc/dataloader_idx_2 ▁
+wandb:   test_auc/dataloader_idx_3 ▁
+wandb:   test_auc/dataloader_idx_4 ▁
+wandb:   test_auc/dataloader_idx_5 ▁
+wandb:   test_auc/dataloader_idx_6 ▁
+wandb:   test_auc/dataloader_idx_7 ▁
+wandb:   test_auc/dataloader_idx_8 ▁
+wandb:   test_auc/dataloader_idx_9 ▁
+wandb:  test_loss/dataloader_idx_0 ▁
+wandb:  test_loss/dataloader_idx_1 ▁
+wandb: test_loss/dataloader_idx_10 ▁
+wandb: test_loss/dataloader_idx_11 ▁
+wandb:  test_loss/dataloader_idx_2 ▁
+wandb:  test_loss/dataloader_idx_3 ▁
+wandb:  test_loss/dataloader_idx_4 ▁
+wandb:  test_loss/dataloader_idx_5 ▁
+wandb:  test_loss/dataloader_idx_6 ▁
+wandb:  test_loss/dataloader_idx_7 ▁
+wandb:  test_loss/dataloader_idx_8 ▁
+wandb:  test_loss/dataloader_idx_9 ▁
+wandb:            train_loss_epoch █▆▄▄▃▃▃▃▃▃▃▃▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:             train_loss_step ▄▃▆▃▃▃▃▃▂▂▂▄▃▃▄▁▃▂▂▄▂▃▂▂▂▁▁▄█▁▄▂▂▂▃▂▃▂▃▂
+wandb:         trainer/global_step ▁▁▂▂▂▂▃▃▃▃▃▃▃▃▄▄▄▄▄▄▅▅▆▆▆▆▆▆▇▇▇▇▇▇▇▇████
+wandb:                     val_auc ▁▂▃▄▄▅▅▅▅▅▅▆▆▆▆▆▆▆▇▇▇▇▇▇▇▇▇▇▇▇██████████
+wandb:                    val_loss █▅▅▄▃▄▄▃▄▄▃▃▄▃▂▂▄▂▃▄▂▁▃▂▂▂▂▂▂▁▁▂▂▂▁▂▂▂▂▂
+wandb: 
+wandb: Run summary:
+wandb:                       epoch 40
+wandb:   test_auc/dataloader_idx_0 0.82544
+wandb:   test_auc/dataloader_idx_1 0.8326
+wandb:  test_auc/dataloader_idx_10 0.81064
+wandb:  test_auc/dataloader_idx_11 0.80049
+wandb:   test_auc/dataloader_idx_2 0.83773
+wandb:   test_auc/dataloader_idx_3 0.84134
+wandb:   test_auc/dataloader_idx_4 0.84513
+wandb:   test_auc/dataloader_idx_5 0.84375
+wandb:   test_auc/dataloader_idx_6 0.83489
+wandb:   test_auc/dataloader_idx_7 0.83024
+wandb:   test_auc/dataloader_idx_8 0.82758
+wandb:   test_auc/dataloader_idx_9 0.82023
+wandb:  test_loss/dataloader_idx_0 0.52814
+wandb:  test_loss/dataloader_idx_1 0.50529
+wandb: test_loss/dataloader_idx_10 0.58367
+wandb: test_loss/dataloader_idx_11 0.61281
+wandb:  test_loss/dataloader_idx_2 0.48566
+wandb:  test_loss/dataloader_idx_3 0.48755
+wandb:  test_loss/dataloader_idx_4 0.48356
+wandb:  test_loss/dataloader_idx_5 0.49484
+wandb:  test_loss/dataloader_idx_6 0.55691
+wandb:  test_loss/dataloader_idx_7 0.53909
+wandb:  test_loss/dataloader_idx_8 0.54399
+wandb:  test_loss/dataloader_idx_9 0.56893
+wandb:            train_loss_epoch 0.48503
+wandb:             train_loss_step 0.62724
+wandb:         trainer/global_step 522400
+wandb:                     val_auc 0.84227
+wandb:                    val_loss 0.43237
+wandb: 
+wandb: 🚀 View run traditional-nonsequential-2013-2018-seed-11 at: https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2/runs/j6jaetfu
+wandb: ⭐️ View project at: https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: /gpfs/scratch/slj9342/wandb/wandb/run-20260121_152035-j6jaetfu/logs
+Saved results to: /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/results/la_maml_clinical_v2/traditional-nonsequential-2013-2018/traditional-nonsequential-2013-2018-seed-11.csv
+============================================
+End time: Fri Jan 23 09:49:40 EST 2026
+Job completed successfully

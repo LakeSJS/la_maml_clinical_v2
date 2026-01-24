@@ -84,8 +84,8 @@ dmypy.json
 results/
 checkpoints/
 wandb/
-logs/
-*.log
+#logs/
+#*.log
 *.csv
 *.parquet
 

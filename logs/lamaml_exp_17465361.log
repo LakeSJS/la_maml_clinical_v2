@@ -1,0 +1,155 @@
+============================================
+Job ID: 17465361
+Job Name: lamaml_exp
+Node: a100-4018
+Partition: a100_short
+Start time: Tue Jan 20 11:07:23 EST 2026
+Config: traditional_nonseq_2013_2018
+Seed: 10
+Paths: gpfs
+============================================
+Running: python /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/scripts/run_experiment.py --config traditional_nonseq_2013_2018 --paths gpfs --seed 10
+============================================
+[rank: 0] Global seed set to 10
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at /gpfs/data/oermannlab/NYUTron/model_zoos/nyutron_small/checkpoint-736000 and are newly initialized: ['bert.pooler.dense.bias', 'bert.pooler.dense.weight', 'classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+wandb: Currently logged in as: lakej98 (lakej98-nyu-langone-health) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.19.8
+wandb: Run data is saved locally in /gpfs/scratch/slj9342/wandb/wandb/run-20260120_110844-4ap0mdwd
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run traditional-nonsequential-2013-2018-seed-10
+wandb: ⭐️ View project at https://wandb.ai/lakej98-nyu-langone-health/NYUtron-temporal-falloff
+wandb: 🚀 View run at https://wandb.ai/lakej98-nyu-langone-health/NYUtron-temporal-falloff/runs/4ap0mdwd
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:612: UserWarning: Checkpoint directory /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/checkpoints/NYUtron-temporal-falloff/traditional-nonsequential-2013-2018/seed-10 exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name     | Type                          | Params
+-----------------------------------------------------------
+0 | model    | BertForSequenceClassification | 124 M 
+1 | val_auc  | BinaryAUROC                   | 0     
+2 | test_auc | BinaryAUROC                   | 0     
+-----------------------------------------------------------
+124 M     Trainable params
+0         Non-trainable params
+124 M     Total params
+497.772   Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:430: PossibleUserWarning: The dataloader, val_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 48 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:430: PossibleUserWarning: The dataloader, train_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 48 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+`Trainer.fit` stopped: `max_epochs=20` reached.
+Restoring states from the checkpoint path at /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/checkpoints/NYUtron-temporal-falloff/traditional-nonsequential-2013-2018/seed-10/best-checkpoint-v1.ckpt
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+Loaded model weights from the checkpoint at /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/checkpoints/NYUtron-temporal-falloff/traditional-nonsequential-2013-2018/seed-10/best-checkpoint-v1.ckpt
+SLURM auto-requeueing enabled. Setting signal handlers.
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:430: PossibleUserWarning: The dataloader, test_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 48 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 0    ┃   DataLoader 1    ┃   DataLoader 2   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.84204876422882… │ 0.83683109283447… │ 0.8422694206237… │
+│     test_loss     │ 0.510793149471283 │ 0.51137876510620… │ 0.4753215909004… │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 3    ┃   DataLoader 4    ┃   DataLoader 5   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.83675491809844… │ 0.83118855953216… │ 0.8270462751388… │
+│     test_loss     │ 0.51531273126602… │ 0.522610604763031 │ 0.5266045331954… │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 6    ┃   DataLoader 7    ┃   DataLoader 8   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.815780520439148 │ 0.80849784612655… │ 0.8048125505447… │
+│     test_loss     │ 0.58324337005615… │ 0.57354515790939… │ 0.5805057883262… │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 9    ┃   DataLoader 10   ┃  DataLoader 11   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.79862785339355… │ 0.79076886177062… │ 0.7814534306526… │
+│     test_loss     │ 0.57728719711303… │ 0.58957791328430… │ 0.6243301033973… │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb:                       epoch ▁▂▂▂▂▃▃▃▄▄▄▄▄▄▄▅▅▅▅▅▆▆▆▆▆▆▆▇▇▇▇▇▇▇██████
+wandb:   test_auc/dataloader_idx_0 ▁
+wandb:   test_auc/dataloader_idx_1 ▁
+wandb:  test_auc/dataloader_idx_10 ▁
+wandb:  test_auc/dataloader_idx_11 ▁
+wandb:   test_auc/dataloader_idx_2 ▁
+wandb:   test_auc/dataloader_idx_3 ▁
+wandb:   test_auc/dataloader_idx_4 ▁
+wandb:   test_auc/dataloader_idx_5 ▁
+wandb:   test_auc/dataloader_idx_6 ▁
+wandb:   test_auc/dataloader_idx_7 ▁
+wandb:   test_auc/dataloader_idx_8 ▁
+wandb:   test_auc/dataloader_idx_9 ▁
+wandb:  test_loss/dataloader_idx_0 ▁
+wandb:  test_loss/dataloader_idx_1 ▁
+wandb: test_loss/dataloader_idx_10 ▁
+wandb: test_loss/dataloader_idx_11 ▁
+wandb:  test_loss/dataloader_idx_2 ▁
+wandb:  test_loss/dataloader_idx_3 ▁
+wandb:  test_loss/dataloader_idx_4 ▁
+wandb:  test_loss/dataloader_idx_5 ▁
+wandb:  test_loss/dataloader_idx_6 ▁
+wandb:  test_loss/dataloader_idx_7 ▁
+wandb:  test_loss/dataloader_idx_8 ▁
+wandb:  test_loss/dataloader_idx_9 ▁
+wandb:            train_loss_epoch █▅▄▃▃▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁
+wandb:             train_loss_step ▃▅▄▄▄▄▆▅▃▃▂▃▄▂▃▃█▂▁▃▂▁▂▄▂▄▅▃▃▃▄▂▂▃▃▃▁▃▂▁
+wandb:         trainer/global_step ▁▁▁▂▂▃▃▃▃▃▃▃▄▄▄▄▄▄▄▄▄▅▅▅▅▆▆▆▆▆▆▆▆▆▇▇▇▇██
+wandb:                     val_auc ▁▃▄▅▆▆▆▆▇▇▇▇▇▇▇█████
+wandb:                    val_loss █▇▄▄▄▃▃▃▂▄▂▄▂▁▄▃▃▁▂▃
+wandb: 
+wandb: Run summary:
+wandb:                       epoch 20
+wandb:   test_auc/dataloader_idx_0 0.84205
+wandb:   test_auc/dataloader_idx_1 0.83683
+wandb:  test_auc/dataloader_idx_10 0.79077
+wandb:  test_auc/dataloader_idx_11 0.78145
+wandb:   test_auc/dataloader_idx_2 0.84227
+wandb:   test_auc/dataloader_idx_3 0.83675
+wandb:   test_auc/dataloader_idx_4 0.83119
+wandb:   test_auc/dataloader_idx_5 0.82705
+wandb:   test_auc/dataloader_idx_6 0.81578
+wandb:   test_auc/dataloader_idx_7 0.8085
+wandb:   test_auc/dataloader_idx_8 0.80481
+wandb:   test_auc/dataloader_idx_9 0.79863
+wandb:  test_loss/dataloader_idx_0 0.51079
+wandb:  test_loss/dataloader_idx_1 0.51138
+wandb: test_loss/dataloader_idx_10 0.58958
+wandb: test_loss/dataloader_idx_11 0.62433
+wandb:  test_loss/dataloader_idx_2 0.47532
+wandb:  test_loss/dataloader_idx_3 0.51531
+wandb:  test_loss/dataloader_idx_4 0.52261
+wandb:  test_loss/dataloader_idx_5 0.5266
+wandb:  test_loss/dataloader_idx_6 0.58324
+wandb:  test_loss/dataloader_idx_7 0.57355
+wandb:  test_loss/dataloader_idx_8 0.58051
+wandb:  test_loss/dataloader_idx_9 0.57729
+wandb:            train_loss_epoch 0.51178
+wandb:             train_loss_step 1.30225
+wandb:         trainer/global_step 261200
+wandb:                     val_auc 0.82388
+wandb:                    val_loss 0.45738
+wandb: 
+wandb: 🚀 View run traditional-nonsequential-2013-2018-seed-10 at: https://wandb.ai/lakej98-nyu-langone-health/NYUtron-temporal-falloff/runs/4ap0mdwd
+wandb: ⭐️ View project at: https://wandb.ai/lakej98-nyu-langone-health/NYUtron-temporal-falloff
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: /gpfs/scratch/slj9342/wandb/wandb/run-20260120_110844-4ap0mdwd/logs
+Saved results to: /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/results/NYUtron-temporal-falloff/traditional-nonsequential-2013-2018/traditional-nonsequential-2013-2018-seed-10.csv
+============================================
+End time: Wed Jan 21 08:47:09 EST 2026
+Job completed successfully
