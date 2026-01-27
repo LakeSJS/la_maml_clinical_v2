@@ -45,13 +45,13 @@ class TmamlModule(BaseModule):
 
         self.meta_optimizer = torch.optim.SGD(model.parameters(), lr=self.learning_rate)
         self.future_step = future_step
-        self.meta_include_current = False
+        self.meta_include_current = True
 
     def build_meta_batch(
         self,
         batch: Dict[str, torch.Tensor],
         future_batch: Dict[str, torch.Tensor],
-        include_current: bool = False,
+        include_current: bool = True,
     ) -> Dict[str, torch.Tensor]:
         """
         Build a meta-batch from future samples (optionally combine with current).
