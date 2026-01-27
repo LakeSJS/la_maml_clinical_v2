@@ -1,30 +1,34 @@
 ============================================
-Job ID: 17640002
+Job ID: 17652263
 Job Name: lamaml_exp
-Node: a100-4020
+Node: a100-4014
 Partition: a100_short
-Start time: Fri Jan 23 21:02:28 EST 2026
+Start time: Sat Jan 24 12:44:38 EST 2026
 Config: tmaml_seq_2013_2024
-Seed: 11
+Seed: 10
 Paths: gpfs
 ============================================
-Running: python /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/scripts/run_experiment.py --config tmaml_seq_2013_2024 --paths gpfs --seed 11
+Running: python /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/scripts/run_experiment.py --config tmaml_seq_2013_2024 --paths gpfs --seed 10
 ============================================
-[rank: 0] Global seed set to 11
+[rank: 0] Global seed set to 10
 Some weights of BertForSequenceClassification were not initialized from the model checkpoint at /gpfs/data/oermannlab/NYUTron/model_zoos/nyutron_small/checkpoint-736000 and are newly initialized: ['bert.pooler.dense.bias', 'bert.pooler.dense.weight', 'classifier.bias', 'classifier.weight']
 You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/utilities/parsing.py:197: UserWarning: Attribute 'model' is an instance of `nn.Module` and is already saved during checkpointing. It is recommended to ignore them using `self.save_hyperparameters(ignore=['model'])`.
+  rank_zero_warn(
 wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
 wandb: Currently logged in as: lakej98 (lakej98-nyu-langone-health) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
 wandb: Tracking run with wandb version 0.19.8
-wandb: Run data is saved locally in /gpfs/scratch/slj9342/wandb/wandb/run-20260123_210416-0givn867
+wandb: Run data is saved locally in /gpfs/scratch/slj9342/wandb/wandb/run-20260124_124558-z2cuzp60
 wandb: Run `wandb offline` to turn off syncing.
-wandb: Syncing run tmaml-sequential-2013-2024-2013-seed-11
+wandb: Syncing run tmaml-sequential-2013-2024-2013-seed-10
 wandb: ⭐️ View project at https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2
-wandb: 🚀 View run at https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2/runs/0givn867
+wandb: 🚀 View run at https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2/runs/z2cuzp60
 GPU available: True (cuda), used: True
 TPU available: False, using: 0 TPU cores
 IPU available: False, using: 0 IPUs
 HPU available: False, using: 0 HPUs
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:612: UserWarning: Checkpoint directory /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/checkpoints/la_maml_clinical_v2/tmaml-sequential-2013-2024/seed-10 exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
 LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
 
   | Name     | Type                          | Params
@@ -94,5 +98,5 @@ Traceback (most recent call last):
   File "parsers.pyx", line 2061, in pandas._libs.parsers.raise_parser_error
 pandas.errors.ParserError: Error tokenizing data. C error: Calling read(nbytes) on source failed. Try engine='python'.
 [1;34mwandb[0m: 
-[1;34mwandb[0m: 🚀 View run [33mtmaml-sequential-2013-2024-2013-seed-11[0m at: [34mhttps://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2/runs/0givn867[0m
-[1;34mwandb[0m: Find logs at: [1;35m../../../../../scratch/slj9342/wandb/wandb/run-20260123_210416-0givn867/logs[0m
+[1;34mwandb[0m: 🚀 View run [33mtmaml-sequential-2013-2024-2013-seed-10[0m at: [34mhttps://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2/runs/z2cuzp60[0m
+[1;34mwandb[0m: Find logs at: [1;35m../../../../../scratch/slj9342/wandb/wandb/run-20260124_124558-z2cuzp60/logs[0m
