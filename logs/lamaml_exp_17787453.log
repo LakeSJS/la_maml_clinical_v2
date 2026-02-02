@@ -1,0 +1,955 @@
+============================================
+Job ID: 17787453
+Job Name: lamaml_exp
+Node: a100-4011
+Partition: a100_short
+Start time: Wed Jan 28 00:43:41 EST 2026
+Config: tmaml_seq_2013_2024
+Seed: 11
+Paths: gpfs
+============================================
+Running: python /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/scripts/run_experiment.py --config tmaml_seq_2013_2024 --paths gpfs --seed 11
+============================================
+[rank: 0] Global seed set to 11
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/utilities/parsing.py:197: UserWarning: Attribute 'model' is an instance of `nn.Module` and is already saved during checkpointing. It is recommended to ignore them using `self.save_hyperparameters(ignore=['model'])`.
+  rank_zero_warn(
+wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+wandb: Currently logged in as: lakej98 (lakej98-nyu-langone-health) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.19.8
+wandb: Run data is saved locally in /gpfs/scratch/slj9342/wandb/wandb/run-20260128_004502-qvhdseva
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run tmaml-sequential-2013-2024-2019-seed-11
+wandb: ⭐️ View project at https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2
+wandb: 🚀 View run at https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2/runs/qvhdseva
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:612: UserWarning: Checkpoint directory /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/checkpoints/la_maml_clinical_v2/tmaml-sequential-2013-2024/seed-11 exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name     | Type                          | Params
+-----------------------------------------------------------
+0 | model    | BertForSequenceClassification | 124 M 
+1 | val_auc  | BinaryAUROC                   | 0     
+2 | test_auc | BinaryAUROC                   | 0     
+-----------------------------------------------------------
+124 M     Trainable params
+0         Non-trainable params
+124 M     Total params
+497.772   Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:430: PossibleUserWarning: The dataloader, val_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 48 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:430: PossibleUserWarning: The dataloader, train_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 48 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+Restoring states from the checkpoint path at /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/checkpoints/la_maml_clinical_v2/tmaml-sequential-2013-2024/seed-11/best-checkpoint-2019.ckpt
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+Loaded model weights from the checkpoint at /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/checkpoints/la_maml_clinical_v2/tmaml-sequential-2013-2024/seed-11/best-checkpoint-2019.ckpt
+SLURM auto-requeueing enabled. Setting signal handlers.
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:430: PossibleUserWarning: The dataloader, test_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 48 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+Resuming from year 2018, checkpoint: /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/checkpoints/la_maml_clinical_v2/tmaml-sequential-2013-2024/seed-11/best-checkpoint-2018.ckpt
+Loaded 0 existing results from previous run
+Resuming training from year 2019
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 0    ┃   DataLoader 1    ┃   DataLoader 2   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.81754356622695… │ 0.82872164249420… │ 0.8481396436691… │
+│     test_loss     │ 0.27963510155677… │ 0.32221162319183… │ 0.2736299633979… │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 3    ┃   DataLoader 4    ┃   DataLoader 5   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.84517103433609… │ 0.84245777130126… │ 0.8393884897232… │
+│     test_loss     │ 0.27605357766151… │ 0.30224239826202… │ 0.2775683999061… │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 6    ┃   DataLoader 7    ┃   DataLoader 8   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.80580985546112… │ 0.81281077861785… │ 0.7836660146713… │
+│     test_loss     │ 0.31316843628883… │ 0.25997754931449… │ 0.3223810493946… │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 9    ┃   DataLoader 10   ┃  DataLoader 11   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.73804986476898… │ 0.73308217525482… │ 0.7090299129486… │
+│     test_loss     │ 0.34637707471847… │ 0.34906908869743… │ 0.3552119731903… │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/utilities/parsing.py:197: UserWarning: Attribute 'model' is an instance of `nn.Module` and is already saved during checkpointing. It is recommended to ignore them using `self.save_hyperparameters(ignore=['model'])`.
+  rank_zero_warn(
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb:                       epoch ▁▁▁▁▁▁▁▂▂▂▂▂▂▂▂▂▄▄▄▅▅▅▅▅▅▅▅▇▇▇▇▇▇▇▇█████
+wandb:             meta_loss_epoch █▆▄▃▂▁
+wandb:              meta_loss_step ▃▁▅▁▁▄▆▁▆▂▁▂▄▁▁▂▁▁▃█▁▁▄▄▃▅▁▂▁▃▁▁▁▄▅▄▃▁▂▂
+wandb:                    test_auc ▆▇████▆▆▅▂▂▁
+wandb:   test_auc/dataloader_idx_0 ▁
+wandb:   test_auc/dataloader_idx_1 ▁
+wandb:  test_auc/dataloader_idx_10 ▁
+wandb:  test_auc/dataloader_idx_11 ▁
+wandb:   test_auc/dataloader_idx_2 ▁
+wandb:   test_auc/dataloader_idx_3 ▁
+wandb:   test_auc/dataloader_idx_4 ▁
+wandb:   test_auc/dataloader_idx_5 ▁
+wandb:   test_auc/dataloader_idx_6 ▁
+wandb:   test_auc/dataloader_idx_7 ▁
+wandb:   test_auc/dataloader_idx_8 ▁
+wandb:   test_auc/dataloader_idx_9 ▁
+wandb:  test_loss/dataloader_idx_0 ▁
+wandb:  test_loss/dataloader_idx_1 ▁
+wandb: test_loss/dataloader_idx_10 ▁
+wandb: test_loss/dataloader_idx_11 ▁
+wandb:  test_loss/dataloader_idx_2 ▁
+wandb:  test_loss/dataloader_idx_3 ▁
+wandb:  test_loss/dataloader_idx_4 ▁
+wandb:  test_loss/dataloader_idx_5 ▁
+wandb:  test_loss/dataloader_idx_6 ▁
+wandb:  test_loss/dataloader_idx_7 ▁
+wandb:  test_loss/dataloader_idx_8 ▁
+wandb:  test_loss/dataloader_idx_9 ▁
+wandb:                   test_year ▁▂▂▃▄▄▅▅▆▇▇█
+wandb:         trainer/global_step ▁▁▁▁▂▃▃▃▃▃▃▃▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▆▆▆▆▇▇▇▇▇▇███
+wandb:    val_auc/dataloader_idx_0 ▅▄▇█▄▁
+wandb:    val_auc/dataloader_idx_1 ▂▃▅█▃▁
+wandb:   val_auc/dataloader_idx_10 ▄▁▂█▆▇
+wandb:   val_auc/dataloader_idx_11 ▄▁▄█▅▅
+wandb:    val_auc/dataloader_idx_2 ▂█▆▆▆▁
+wandb:    val_auc/dataloader_idx_3 ▁▅███▃
+wandb:    val_auc/dataloader_idx_4 ▇█▅▃▅▁
+wandb:    val_auc/dataloader_idx_5 █▅▅▅▃▁
+wandb:    val_auc/dataloader_idx_6 ▄▆█▆▃▁
+wandb:    val_auc/dataloader_idx_7 ▂▁▃▄█▇
+wandb:    val_auc/dataloader_idx_8 ▇▆▂█▁▁
+wandb:    val_auc/dataloader_idx_9 ▂▁▃█▇█
+wandb:   val_loss/dataloader_idx_0 ▂▃▁▃▆█
+wandb:   val_loss/dataloader_idx_1 ▂▃▁▃▆█
+wandb:  val_loss/dataloader_idx_10 ▁▃▄▅▇█
+wandb:  val_loss/dataloader_idx_11 ▁▃▄▅▇█
+wandb:   val_loss/dataloader_idx_2 ▂▂▁▃▆█
+wandb:   val_loss/dataloader_idx_3 ▂▃▁▃▆█
+wandb:   val_loss/dataloader_idx_4 ▁▂▂▄▆█
+wandb:   val_loss/dataloader_idx_5 ▁▃▃▅▆█
+wandb:   val_loss/dataloader_idx_6 ▁▂▃▅▆█
+wandb:   val_loss/dataloader_idx_7 █▆▃▂▁▂
+wandb:   val_loss/dataloader_idx_8 ▁▂▃▄▆█
+wandb:   val_loss/dataloader_idx_9 ▁▃▄▄▇█
+wandb: 
+wandb: Run summary:
+wandb:                       epoch 6
+wandb:             meta_loss_epoch 0.14825
+wandb:              meta_loss_step 0.8066
+wandb:                    test_auc 0.70903
+wandb:   test_auc/dataloader_idx_0 0.81754
+wandb:   test_auc/dataloader_idx_1 0.82872
+wandb:  test_auc/dataloader_idx_10 0.73308
+wandb:  test_auc/dataloader_idx_11 0.70903
+wandb:   test_auc/dataloader_idx_2 0.84814
+wandb:   test_auc/dataloader_idx_3 0.84517
+wandb:   test_auc/dataloader_idx_4 0.84246
+wandb:   test_auc/dataloader_idx_5 0.83939
+wandb:   test_auc/dataloader_idx_6 0.80581
+wandb:   test_auc/dataloader_idx_7 0.81281
+wandb:   test_auc/dataloader_idx_8 0.78367
+wandb:   test_auc/dataloader_idx_9 0.73805
+wandb:  test_loss/dataloader_idx_0 0.27964
+wandb:  test_loss/dataloader_idx_1 0.32221
+wandb: test_loss/dataloader_idx_10 0.34907
+wandb: test_loss/dataloader_idx_11 0.35521
+wandb:  test_loss/dataloader_idx_2 0.27363
+wandb:  test_loss/dataloader_idx_3 0.27605
+wandb:  test_loss/dataloader_idx_4 0.30224
+wandb:  test_loss/dataloader_idx_5 0.27757
+wandb:  test_loss/dataloader_idx_6 0.31317
+wandb:  test_loss/dataloader_idx_7 0.25998
+wandb:  test_loss/dataloader_idx_8 0.32238
+wandb:  test_loss/dataloader_idx_9 0.34638
+wandb:                   test_year 2024
+wandb:         trainer/global_step 81900
+wandb:    val_auc/dataloader_idx_0 0.82263
+wandb:    val_auc/dataloader_idx_1 0.82897
+wandb:   val_auc/dataloader_idx_10 0.73232
+wandb:   val_auc/dataloader_idx_11 0.71226
+wandb:    val_auc/dataloader_idx_2 0.8353
+wandb:    val_auc/dataloader_idx_3 0.85253
+wandb:    val_auc/dataloader_idx_4 0.83652
+wandb:    val_auc/dataloader_idx_5 0.82181
+wandb:    val_auc/dataloader_idx_6 0.82426
+wandb:    val_auc/dataloader_idx_7 0.80975
+wandb:    val_auc/dataloader_idx_8 0.77464
+wandb:    val_auc/dataloader_idx_9 0.75551
+wandb:   val_loss/dataloader_idx_0 0.32624
+wandb:   val_loss/dataloader_idx_1 0.32833
+wandb:  val_loss/dataloader_idx_10 0.36898
+wandb:  val_loss/dataloader_idx_11 0.3825
+wandb:   val_loss/dataloader_idx_2 0.29745
+wandb:   val_loss/dataloader_idx_3 0.29897
+wandb:   val_loss/dataloader_idx_4 0.33125
+wandb:   val_loss/dataloader_idx_5 0.3296
+wandb:   val_loss/dataloader_idx_6 0.3118
+wandb:   val_loss/dataloader_idx_7 0.27344
+wandb:   val_loss/dataloader_idx_8 0.34137
+wandb:   val_loss/dataloader_idx_9 0.35448
+wandb: 
+wandb: 🚀 View run tmaml-sequential-2013-2024-2019-seed-11 at: https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2/runs/qvhdseva
+wandb: ⭐️ View project at: https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: /gpfs/scratch/slj9342/wandb/wandb/run-20260128_004502-qvhdseva/logs
+wandb: Tracking run with wandb version 0.19.8
+wandb: Run data is saved locally in /gpfs/scratch/slj9342/wandb/wandb/run-20260128_134000-fl8g1k1e
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run tmaml-sequential-2013-2024-2020-seed-11
+wandb: ⭐️ View project at https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2
+wandb: 🚀 View run at https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2/runs/fl8g1k1e
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:612: UserWarning: Checkpoint directory /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/checkpoints/la_maml_clinical_v2/tmaml-sequential-2013-2024/seed-11 exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name     | Type                          | Params
+-----------------------------------------------------------
+0 | model    | BertForSequenceClassification | 124 M 
+1 | val_auc  | BinaryAUROC                   | 0     
+2 | test_auc | BinaryAUROC                   | 0     
+-----------------------------------------------------------
+124 M     Trainable params
+0         Non-trainable params
+124 M     Total params
+497.772   Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:430: PossibleUserWarning: The dataloader, val_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 48 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:430: PossibleUserWarning: The dataloader, train_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 48 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/utilities/data.py:76: UserWarning: Trying to infer the `batch_size` from an ambiguous collection. The batch size we found is 4. To avoid any miscalculations, use `self.log(..., batch_size=batch_size)`.
+  warning_cache.warn(
+Restoring states from the checkpoint path at /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/checkpoints/la_maml_clinical_v2/tmaml-sequential-2013-2024/seed-11/best-checkpoint-2020.ckpt
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+Loaded model weights from the checkpoint at /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/checkpoints/la_maml_clinical_v2/tmaml-sequential-2013-2024/seed-11/best-checkpoint-2020.ckpt
+SLURM auto-requeueing enabled. Setting signal handlers.
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:430: PossibleUserWarning: The dataloader, test_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 48 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 0    ┃   DataLoader 1    ┃   DataLoader 2   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.81668895483016… │ 0.82703280448913… │ 0.8475812673568… │
+│     test_loss     │ 0.26345705986022… │ 0.30409535765647… │ 0.2606355249881… │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 3    ┃   DataLoader 4    ┃   DataLoader 5   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.84279191493988… │ 0.84218972921371… │ 0.8416501283645… │
+│     test_loss     │ 0.26195338368415… │ 0.28477412462234… │ 0.2594466507434… │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 6    ┃   DataLoader 7    ┃   DataLoader 8   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.80511462688446… │ 0.81206369400024… │ 0.7931874990463… │
+│     test_loss     │ 0.29825562238693… │ 0.27030864357948… │ 0.3078209459781… │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 9    ┃   DataLoader 10   ┃  DataLoader 11   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.75652992725372… │ 0.745904803276062 │ 0.7227894663810… │
+│     test_loss     │ 0.30723094940185… │ 0.31532758474349… │ 0.3201662302017… │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/utilities/parsing.py:197: UserWarning: Attribute 'model' is an instance of `nn.Module` and is already saved during checkpointing. It is recommended to ignore them using `self.save_hyperparameters(ignore=['model'])`.
+  rank_zero_warn(
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb:                       epoch ▁▁▁▁▁▁▁▃▃▃▃▃▅▅▅▅▅▅▅▅▅▅▅▅▆▆▆▆▆▆██████████
+wandb:             meta_loss_epoch █▅▃▁▁
+wandb:              meta_loss_step ▁▁▂▂▁▇▃█▁▄▄▃▂▇▅▂▂█▂▃▁▂▁▂▄▂▂▁▁▂▂▂▂▃▁▂▁▅▁▁
+wandb:                    test_auc ▆▇████▆▆▅▃▂▁
+wandb:   test_auc/dataloader_idx_0 ▁
+wandb:   test_auc/dataloader_idx_1 ▁
+wandb:  test_auc/dataloader_idx_10 ▁
+wandb:  test_auc/dataloader_idx_11 ▁
+wandb:   test_auc/dataloader_idx_2 ▁
+wandb:   test_auc/dataloader_idx_3 ▁
+wandb:   test_auc/dataloader_idx_4 ▁
+wandb:   test_auc/dataloader_idx_5 ▁
+wandb:   test_auc/dataloader_idx_6 ▁
+wandb:   test_auc/dataloader_idx_7 ▁
+wandb:   test_auc/dataloader_idx_8 ▁
+wandb:   test_auc/dataloader_idx_9 ▁
+wandb:  test_loss/dataloader_idx_0 ▁
+wandb:  test_loss/dataloader_idx_1 ▁
+wandb: test_loss/dataloader_idx_10 ▁
+wandb: test_loss/dataloader_idx_11 ▁
+wandb:  test_loss/dataloader_idx_2 ▁
+wandb:  test_loss/dataloader_idx_3 ▁
+wandb:  test_loss/dataloader_idx_4 ▁
+wandb:  test_loss/dataloader_idx_5 ▁
+wandb:  test_loss/dataloader_idx_6 ▁
+wandb:  test_loss/dataloader_idx_7 ▁
+wandb:  test_loss/dataloader_idx_8 ▁
+wandb:  test_loss/dataloader_idx_9 ▁
+wandb:                   test_year ▁▂▂▃▄▄▅▅▆▇▇█
+wandb:         trainer/global_step ▁▁▁▂▂▂▂▂▂▂▃▃▃▃▃▄▄▄▄▄▄▄▄▄▅▅▅▆▆▆▇▇▇▇▇▇████
+wandb:    val_auc/dataloader_idx_0 ▅█▁▆▄
+wandb:    val_auc/dataloader_idx_1 ▃▃▁▂█
+wandb:   val_auc/dataloader_idx_10 █▄▄▁▂
+wandb:   val_auc/dataloader_idx_11 ██▇▁▂
+wandb:    val_auc/dataloader_idx_2 ▁▂▃█▅
+wandb:    val_auc/dataloader_idx_3 █▅▂▁▅
+wandb:    val_auc/dataloader_idx_4 ▁██▆█
+wandb:    val_auc/dataloader_idx_5 █▆▄▃▁
+wandb:    val_auc/dataloader_idx_6 ▃▁▇██
+wandb:    val_auc/dataloader_idx_7 ▁█▁▃▁
+wandb:    val_auc/dataloader_idx_8 ▁▃▆▅█
+wandb:    val_auc/dataloader_idx_9 ▄█▄▁▂
+wandb:   val_loss/dataloader_idx_0 ▁█▃▂▂
+wandb:   val_loss/dataloader_idx_1 ▃█▄▄▁
+wandb:  val_loss/dataloader_idx_10 ▃▁▃█▃
+wandb:  val_loss/dataloader_idx_11 ▅▁▃█▃
+wandb:   val_loss/dataloader_idx_2 ▄█▂▁▃
+wandb:   val_loss/dataloader_idx_3 ▁█▆▇▅
+wandb:   val_loss/dataloader_idx_4 ▅█▁▁▅
+wandb:   val_loss/dataloader_idx_5 ▁▅▁▄█
+wandb:   val_loss/dataloader_idx_6 ▄█▁▃▆
+wandb:   val_loss/dataloader_idx_7 ▁▂▅█▇
+wandb:   val_loss/dataloader_idx_8 ▇█▃▄▁
+wandb:   val_loss/dataloader_idx_9 ▅▁▂█▃
+wandb: 
+wandb: Run summary:
+wandb:                       epoch 5
+wandb:             meta_loss_epoch 0.1643
+wandb:              meta_loss_step 0.15927
+wandb:                    test_auc 0.72279
+wandb:   test_auc/dataloader_idx_0 0.81669
+wandb:   test_auc/dataloader_idx_1 0.82703
+wandb:  test_auc/dataloader_idx_10 0.7459
+wandb:  test_auc/dataloader_idx_11 0.72279
+wandb:   test_auc/dataloader_idx_2 0.84758
+wandb:   test_auc/dataloader_idx_3 0.84279
+wandb:   test_auc/dataloader_idx_4 0.84219
+wandb:   test_auc/dataloader_idx_5 0.84165
+wandb:   test_auc/dataloader_idx_6 0.80511
+wandb:   test_auc/dataloader_idx_7 0.81206
+wandb:   test_auc/dataloader_idx_8 0.79319
+wandb:   test_auc/dataloader_idx_9 0.75653
+wandb:  test_loss/dataloader_idx_0 0.26346
+wandb:  test_loss/dataloader_idx_1 0.3041
+wandb: test_loss/dataloader_idx_10 0.31533
+wandb: test_loss/dataloader_idx_11 0.32017
+wandb:  test_loss/dataloader_idx_2 0.26064
+wandb:  test_loss/dataloader_idx_3 0.26195
+wandb:  test_loss/dataloader_idx_4 0.28477
+wandb:  test_loss/dataloader_idx_5 0.25945
+wandb:  test_loss/dataloader_idx_6 0.29826
+wandb:  test_loss/dataloader_idx_7 0.27031
+wandb:  test_loss/dataloader_idx_8 0.30782
+wandb:  test_loss/dataloader_idx_9 0.30723
+wandb:                   test_year 2024
+wandb:         trainer/global_step 37385
+wandb:    val_auc/dataloader_idx_0 0.82445
+wandb:    val_auc/dataloader_idx_1 0.8341
+wandb:   val_auc/dataloader_idx_10 0.73074
+wandb:   val_auc/dataloader_idx_11 0.72287
+wandb:    val_auc/dataloader_idx_2 0.8395
+wandb:    val_auc/dataloader_idx_3 0.85104
+wandb:    val_auc/dataloader_idx_4 0.84274
+wandb:    val_auc/dataloader_idx_5 0.8185
+wandb:    val_auc/dataloader_idx_6 0.83024
+wandb:    val_auc/dataloader_idx_7 0.80472
+wandb:    val_auc/dataloader_idx_8 0.80441
+wandb:    val_auc/dataloader_idx_9 0.76543
+wandb:   val_loss/dataloader_idx_0 0.27756
+wandb:   val_loss/dataloader_idx_1 0.28236
+wandb:  val_loss/dataloader_idx_10 0.32311
+wandb:  val_loss/dataloader_idx_11 0.32346
+wandb:   val_loss/dataloader_idx_2 0.2552
+wandb:   val_loss/dataloader_idx_3 0.26225
+wandb:   val_loss/dataloader_idx_4 0.28161
+wandb:   val_loss/dataloader_idx_5 0.29084
+wandb:   val_loss/dataloader_idx_6 0.27326
+wandb:   val_loss/dataloader_idx_7 0.28758
+wandb:   val_loss/dataloader_idx_8 0.29764
+wandb:   val_loss/dataloader_idx_9 0.30267
+wandb: 
+wandb: 🚀 View run tmaml-sequential-2013-2024-2020-seed-11 at: https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2/runs/fl8g1k1e
+wandb: ⭐️ View project at: https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: /gpfs/scratch/slj9342/wandb/wandb/run-20260128_134000-fl8g1k1e/logs
+wandb: Tracking run with wandb version 0.19.8
+wandb: Run data is saved locally in /gpfs/scratch/slj9342/wandb/wandb/run-20260128_203552-iewxxftj
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run tmaml-sequential-2013-2024-2021-seed-11
+wandb: ⭐️ View project at https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2
+wandb: 🚀 View run at https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2/runs/iewxxftj
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:612: UserWarning: Checkpoint directory /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/checkpoints/la_maml_clinical_v2/tmaml-sequential-2013-2024/seed-11 exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name     | Type                          | Params
+-----------------------------------------------------------
+0 | model    | BertForSequenceClassification | 124 M 
+1 | val_auc  | BinaryAUROC                   | 0     
+2 | test_auc | BinaryAUROC                   | 0     
+-----------------------------------------------------------
+124 M     Trainable params
+0         Non-trainable params
+124 M     Total params
+497.772   Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:430: PossibleUserWarning: The dataloader, val_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 48 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:430: PossibleUserWarning: The dataloader, train_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 48 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/utilities/data.py:76: UserWarning: Trying to infer the `batch_size` from an ambiguous collection. The batch size we found is 3. To avoid any miscalculations, use `self.log(..., batch_size=batch_size)`.
+  warning_cache.warn(
+Restoring states from the checkpoint path at /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/checkpoints/la_maml_clinical_v2/tmaml-sequential-2013-2024/seed-11/best-checkpoint-2021.ckpt
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+Loaded model weights from the checkpoint at /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/checkpoints/la_maml_clinical_v2/tmaml-sequential-2013-2024/seed-11/best-checkpoint-2021.ckpt
+SLURM auto-requeueing enabled. Setting signal handlers.
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:430: PossibleUserWarning: The dataloader, test_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 48 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 0    ┃   DataLoader 1    ┃   DataLoader 2   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.818657636642456 │ 0.82828640937805… │ 0.8455771207809… │
+│     test_loss     │ 0.26613903045654… │ 0.30631911754608… │ 0.2646350562572… │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 3    ┃   DataLoader 4    ┃   DataLoader 5   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.84188807010650… │ 0.84211272001266… │ 0.8405864238739… │
+│     test_loss     │ 0.26507261395454… │ 0.28818055987358… │ 0.2615336179733… │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 6    ┃   DataLoader 7    ┃   DataLoader 8   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.80586302280426… │ 0.80939400196075… │ 0.7963526844978… │
+│     test_loss     │ 0.30043938755989… │ 0.27580451965332… │ 0.3118827939033… │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 9    ┃   DataLoader 10   ┃  DataLoader 11   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.77188754081726… │ 0.76106786727905… │ 0.7358150482177… │
+│     test_loss     │ 0.30516076087951… │ 0.31490918993949… │ 0.3215788006782… │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/utilities/parsing.py:197: UserWarning: Attribute 'model' is an instance of `nn.Module` and is already saved during checkpointing. It is recommended to ignore them using `self.save_hyperparameters(ignore=['model'])`.
+  rank_zero_warn(
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb:                       epoch ▁▁▁▁▁▁▃▃▃▃▃▃▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▆▆▆▆▆▆▆▆▆▆█
+wandb:             meta_loss_epoch █▇▂▁
+wandb:              meta_loss_step ▃▅▂▁▂▁▁▁▂▂▁▁▁▃▁▅▁▂▃▂▁▁▁▁▁▁▄▁▁▃▂▃▁▁▂▃▃▁▃█
+wandb:                    test_auc ▆▇████▅▆▅▃▃▁
+wandb:   test_auc/dataloader_idx_0 ▁
+wandb:   test_auc/dataloader_idx_1 ▁
+wandb:  test_auc/dataloader_idx_10 ▁
+wandb:  test_auc/dataloader_idx_11 ▁
+wandb:   test_auc/dataloader_idx_2 ▁
+wandb:   test_auc/dataloader_idx_3 ▁
+wandb:   test_auc/dataloader_idx_4 ▁
+wandb:   test_auc/dataloader_idx_5 ▁
+wandb:   test_auc/dataloader_idx_6 ▁
+wandb:   test_auc/dataloader_idx_7 ▁
+wandb:   test_auc/dataloader_idx_8 ▁
+wandb:   test_auc/dataloader_idx_9 ▁
+wandb:  test_loss/dataloader_idx_0 ▁
+wandb:  test_loss/dataloader_idx_1 ▁
+wandb: test_loss/dataloader_idx_10 ▁
+wandb: test_loss/dataloader_idx_11 ▁
+wandb:  test_loss/dataloader_idx_2 ▁
+wandb:  test_loss/dataloader_idx_3 ▁
+wandb:  test_loss/dataloader_idx_4 ▁
+wandb:  test_loss/dataloader_idx_5 ▁
+wandb:  test_loss/dataloader_idx_6 ▁
+wandb:  test_loss/dataloader_idx_7 ▁
+wandb:  test_loss/dataloader_idx_8 ▁
+wandb:  test_loss/dataloader_idx_9 ▁
+wandb:                   test_year ▁▂▂▃▄▄▅▅▆▇▇█
+wandb:         trainer/global_step ▁▁▂▂▂▂▂▃▃▃▃▃▃▃▃▃▄▄▄▅▅▅▅▅▆▆▆▇▇▇▇▇▇▇▇█████
+wandb:    val_auc/dataloader_idx_0 ▅█▁▆
+wandb:    val_auc/dataloader_idx_1 █▅▅▁
+wandb:   val_auc/dataloader_idx_10 ▃▁▇█
+wandb:   val_auc/dataloader_idx_11 ▁▃█▇
+wandb:    val_auc/dataloader_idx_2 █▅▁▅
+wandb:    val_auc/dataloader_idx_3 █▇▁▆
+wandb:    val_auc/dataloader_idx_4 █▅▃▁
+wandb:    val_auc/dataloader_idx_5 █▃▁▄
+wandb:    val_auc/dataloader_idx_6 ▃█▃▁
+wandb:    val_auc/dataloader_idx_7 ▇█▂▁
+wandb:    val_auc/dataloader_idx_8 █▅▇▁
+wandb:    val_auc/dataloader_idx_9 ▂▁▃█
+wandb:   val_loss/dataloader_idx_0 ▃▁▂█
+wandb:   val_loss/dataloader_idx_1 ▃▁▁█
+wandb:  val_loss/dataloader_idx_10 █▄▁▂
+wandb:  val_loss/dataloader_idx_11 █▂▁▃
+wandb:   val_loss/dataloader_idx_2 ▂▁▂█
+wandb:   val_loss/dataloader_idx_3 ▂▁▃█
+wandb:   val_loss/dataloader_idx_4 ▃▁▂█
+wandb:   val_loss/dataloader_idx_5 ▂▁▁█
+wandb:   val_loss/dataloader_idx_6 ▃▁▂█
+wandb:   val_loss/dataloader_idx_7 ▄▁▄█
+wandb:   val_loss/dataloader_idx_8 ▇▁▁█
+wandb:   val_loss/dataloader_idx_9 █▄▂▁
+wandb: 
+wandb: Run summary:
+wandb:                       epoch 4
+wandb:             meta_loss_epoch 0.17489
+wandb:              meta_loss_step 0.06262
+wandb:                    test_auc 0.73582
+wandb:   test_auc/dataloader_idx_0 0.81866
+wandb:   test_auc/dataloader_idx_1 0.82829
+wandb:  test_auc/dataloader_idx_10 0.76107
+wandb:  test_auc/dataloader_idx_11 0.73582
+wandb:   test_auc/dataloader_idx_2 0.84558
+wandb:   test_auc/dataloader_idx_3 0.84189
+wandb:   test_auc/dataloader_idx_4 0.84211
+wandb:   test_auc/dataloader_idx_5 0.84059
+wandb:   test_auc/dataloader_idx_6 0.80586
+wandb:   test_auc/dataloader_idx_7 0.80939
+wandb:   test_auc/dataloader_idx_8 0.79635
+wandb:   test_auc/dataloader_idx_9 0.77189
+wandb:  test_loss/dataloader_idx_0 0.26614
+wandb:  test_loss/dataloader_idx_1 0.30632
+wandb: test_loss/dataloader_idx_10 0.31491
+wandb: test_loss/dataloader_idx_11 0.32158
+wandb:  test_loss/dataloader_idx_2 0.26464
+wandb:  test_loss/dataloader_idx_3 0.26507
+wandb:  test_loss/dataloader_idx_4 0.28818
+wandb:  test_loss/dataloader_idx_5 0.26153
+wandb:  test_loss/dataloader_idx_6 0.30044
+wandb:  test_loss/dataloader_idx_7 0.2758
+wandb:  test_loss/dataloader_idx_8 0.31188
+wandb:  test_loss/dataloader_idx_9 0.30516
+wandb:                   test_year 2024
+wandb:         trainer/global_step 29908
+wandb:    val_auc/dataloader_idx_0 0.82642
+wandb:    val_auc/dataloader_idx_1 0.83335
+wandb:   val_auc/dataloader_idx_10 0.75581
+wandb:   val_auc/dataloader_idx_11 0.74358
+wandb:    val_auc/dataloader_idx_2 0.83724
+wandb:    val_auc/dataloader_idx_3 0.85234
+wandb:    val_auc/dataloader_idx_4 0.83937
+wandb:    val_auc/dataloader_idx_5 0.8187
+wandb:    val_auc/dataloader_idx_6 0.82592
+wandb:    val_auc/dataloader_idx_7 0.80267
+wandb:    val_auc/dataloader_idx_8 0.8021
+wandb:    val_auc/dataloader_idx_9 0.77764
+wandb:   val_loss/dataloader_idx_0 0.29498
+wandb:   val_loss/dataloader_idx_1 0.29955
+wandb:  val_loss/dataloader_idx_10 0.31329
+wandb:  val_loss/dataloader_idx_11 0.31962
+wandb:   val_loss/dataloader_idx_2 0.26859
+wandb:   val_loss/dataloader_idx_3 0.27532
+wandb:   val_loss/dataloader_idx_4 0.29445
+wandb:   val_loss/dataloader_idx_5 0.29692
+wandb:   val_loss/dataloader_idx_6 0.28117
+wandb:   val_loss/dataloader_idx_7 0.29374
+wandb:   val_loss/dataloader_idx_8 0.30639
+wandb:   val_loss/dataloader_idx_9 0.297
+wandb: 
+wandb: 🚀 View run tmaml-sequential-2013-2024-2021-seed-11 at: https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2/runs/iewxxftj
+wandb: ⭐️ View project at: https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: /gpfs/scratch/slj9342/wandb/wandb/run-20260128_203552-iewxxftj/logs
+wandb: Tracking run with wandb version 0.19.8
+wandb: Run data is saved locally in /gpfs/scratch/slj9342/wandb/wandb/run-20260129_021959-6ve3x1ob
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run tmaml-sequential-2013-2024-2022-seed-11
+wandb: ⭐️ View project at https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2
+wandb: 🚀 View run at https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2/runs/6ve3x1ob
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:612: UserWarning: Checkpoint directory /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/checkpoints/la_maml_clinical_v2/tmaml-sequential-2013-2024/seed-11 exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name     | Type                          | Params
+-----------------------------------------------------------
+0 | model    | BertForSequenceClassification | 124 M 
+1 | val_auc  | BinaryAUROC                   | 0     
+2 | test_auc | BinaryAUROC                   | 0     
+-----------------------------------------------------------
+124 M     Trainable params
+0         Non-trainable params
+124 M     Total params
+497.772   Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:430: PossibleUserWarning: The dataloader, val_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 48 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:430: PossibleUserWarning: The dataloader, train_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 48 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/utilities/data.py:76: UserWarning: Trying to infer the `batch_size` from an ambiguous collection. The batch size we found is 1. To avoid any miscalculations, use `self.log(..., batch_size=batch_size)`.
+  warning_cache.warn(
+Restoring states from the checkpoint path at /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/checkpoints/la_maml_clinical_v2/tmaml-sequential-2013-2024/seed-11/best-checkpoint-2022.ckpt
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+Loaded model weights from the checkpoint at /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/checkpoints/la_maml_clinical_v2/tmaml-sequential-2013-2024/seed-11/best-checkpoint-2022.ckpt
+SLURM auto-requeueing enabled. Setting signal handlers.
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:430: PossibleUserWarning: The dataloader, test_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 48 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 0    ┃   DataLoader 1    ┃   DataLoader 2   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.81200897693634… │ 0.82238483428955… │ 0.8404969573020… │
+│     test_loss     │ 0.26630109548568… │ 0.30520892143249… │ 0.2642979323863… │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 3    ┃   DataLoader 4    ┃   DataLoader 5   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.83645224571228… │ 0.83930367231369… │ 0.8367289900779… │
+│     test_loss     │ 0.26566040515899… │ 0.28955730795860… │ 0.2636725902557… │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 6    ┃   DataLoader 7    ┃   DataLoader 8   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.80954790115356… │ 0.80984354019165… │ 0.7919974327087… │
+│     test_loss     │ 0.29627576470375… │ 0.27367690205574… │ 0.3165860474109… │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 9    ┃   DataLoader 10   ┃  DataLoader 11   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.76664954423904… │ 0.77498316764831… │ 0.7439117431640… │
+│     test_loss     │ 0.31123757362365… │ 0.30615884065628… │ 0.3189804852008… │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/utilities/parsing.py:197: UserWarning: Attribute 'model' is an instance of `nn.Module` and is already saved during checkpointing. It is recommended to ignore them using `self.save_hyperparameters(ignore=['model'])`.
+  rank_zero_warn(
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb:                       epoch ▁▁▁▁▁▂▂▂▂▂▃▃▃▃▃▄▄▄▅▅▅▅▆▆▆▆▆▆▆▆▇▇▇▇▇█████
+wandb:             meta_loss_epoch █▆▅▄▃▂▂▁
+wandb:              meta_loss_step ▁▄▁▄▁▁▂▃▁█▁▁▁▁▂▄▃▂▁▃▁▅▂▂▅▄▁▄▅▂▁▁▃▂▄▇▁▁▆▁
+wandb:                    test_auc ▆▇████▆▆▄▃▃▁
+wandb:   test_auc/dataloader_idx_0 ▁
+wandb:   test_auc/dataloader_idx_1 ▁
+wandb:  test_auc/dataloader_idx_10 ▁
+wandb:  test_auc/dataloader_idx_11 ▁
+wandb:   test_auc/dataloader_idx_2 ▁
+wandb:   test_auc/dataloader_idx_3 ▁
+wandb:   test_auc/dataloader_idx_4 ▁
+wandb:   test_auc/dataloader_idx_5 ▁
+wandb:   test_auc/dataloader_idx_6 ▁
+wandb:   test_auc/dataloader_idx_7 ▁
+wandb:   test_auc/dataloader_idx_8 ▁
+wandb:   test_auc/dataloader_idx_9 ▁
+wandb:  test_loss/dataloader_idx_0 ▁
+wandb:  test_loss/dataloader_idx_1 ▁
+wandb: test_loss/dataloader_idx_10 ▁
+wandb: test_loss/dataloader_idx_11 ▁
+wandb:  test_loss/dataloader_idx_2 ▁
+wandb:  test_loss/dataloader_idx_3 ▁
+wandb:  test_loss/dataloader_idx_4 ▁
+wandb:  test_loss/dataloader_idx_5 ▁
+wandb:  test_loss/dataloader_idx_6 ▁
+wandb:  test_loss/dataloader_idx_7 ▁
+wandb:  test_loss/dataloader_idx_8 ▁
+wandb:  test_loss/dataloader_idx_9 ▁
+wandb:                   test_year ▁▂▂▃▄▄▅▅▆▇▇█
+wandb:         trainer/global_step ▁▁▁▁▁▂▂▂▂▂▃▃▃▃▃▄▄▄▅▅▅▅▅▅▅▅▅▆▆▆▆▇▇▇▇▇▇▇▇█
+wandb:    val_auc/dataloader_idx_0 █▆▅▄▃▁▂▃
+wandb:    val_auc/dataloader_idx_1 ██▅▄▃▁▁▃
+wandb:   val_auc/dataloader_idx_10 ▁▅▃▆▆█▇▇
+wandb:   val_auc/dataloader_idx_11 ▁▅▃▆██▆▇
+wandb:    val_auc/dataloader_idx_2 █▆▆▇▅▂▁▄
+wandb:    val_auc/dataloader_idx_3 █▇▅▃▅▂▂▁
+wandb:    val_auc/dataloader_idx_4 █▆▅▄▃▁▁▂
+wandb:    val_auc/dataloader_idx_5 ▆█▆▆▇▅▁▂
+wandb:    val_auc/dataloader_idx_6 █▇▄▃▄▁▁▃
+wandb:    val_auc/dataloader_idx_7 ▇█▆█▇▃▁▇
+wandb:    val_auc/dataloader_idx_8 █▇▅▁▄▁▂▃
+wandb:    val_auc/dataloader_idx_9 ▁▃▄▄█▁▆▃
+wandb:   val_loss/dataloader_idx_0 ▂▁▂▆▇██▄
+wandb:   val_loss/dataloader_idx_1 ▂▁▃▅▆▇█▆
+wandb:  val_loss/dataloader_idx_10 █▄▄▃▂▁▂▃
+wandb:  val_loss/dataloader_idx_11 █▃▂▂▁▁▃▃
+wandb:   val_loss/dataloader_idx_2 ▁▂▂▂▄▆█▄
+wandb:   val_loss/dataloader_idx_3 ▁▂▄▇▆███
+wandb:   val_loss/dataloader_idx_4 ▁▃▃▆▆█▇▇
+wandb:   val_loss/dataloader_idx_5 ▂▁▃▅▅▆▇█
+wandb:   val_loss/dataloader_idx_6 ▁▁▄▇▆██▇
+wandb:   val_loss/dataloader_idx_7 ▂▁▄▆▄▆█▆
+wandb:   val_loss/dataloader_idx_8 ▁▂▄█▄▇█▇
+wandb:   val_loss/dataloader_idx_9 ▁▁▂▄▂▆▅█
+wandb: 
+wandb: Run summary:
+wandb:                       epoch 8
+wandb:             meta_loss_epoch 0.16651
+wandb:              meta_loss_step 0.1821
+wandb:                    test_auc 0.74391
+wandb:   test_auc/dataloader_idx_0 0.81201
+wandb:   test_auc/dataloader_idx_1 0.82238
+wandb:  test_auc/dataloader_idx_10 0.77498
+wandb:  test_auc/dataloader_idx_11 0.74391
+wandb:   test_auc/dataloader_idx_2 0.8405
+wandb:   test_auc/dataloader_idx_3 0.83645
+wandb:   test_auc/dataloader_idx_4 0.8393
+wandb:   test_auc/dataloader_idx_5 0.83673
+wandb:   test_auc/dataloader_idx_6 0.80955
+wandb:   test_auc/dataloader_idx_7 0.80984
+wandb:   test_auc/dataloader_idx_8 0.792
+wandb:   test_auc/dataloader_idx_9 0.76665
+wandb:  test_loss/dataloader_idx_0 0.2663
+wandb:  test_loss/dataloader_idx_1 0.30521
+wandb: test_loss/dataloader_idx_10 0.30616
+wandb: test_loss/dataloader_idx_11 0.31898
+wandb:  test_loss/dataloader_idx_2 0.2643
+wandb:  test_loss/dataloader_idx_3 0.26566
+wandb:  test_loss/dataloader_idx_4 0.28956
+wandb:  test_loss/dataloader_idx_5 0.26367
+wandb:  test_loss/dataloader_idx_6 0.29628
+wandb:  test_loss/dataloader_idx_7 0.27368
+wandb:  test_loss/dataloader_idx_8 0.31659
+wandb:  test_loss/dataloader_idx_9 0.31124
+wandb:                   test_year 2024
+wandb:         trainer/global_step 130040
+wandb:    val_auc/dataloader_idx_0 0.81781
+wandb:    val_auc/dataloader_idx_1 0.82287
+wandb:   val_auc/dataloader_idx_10 0.76847
+wandb:   val_auc/dataloader_idx_11 0.75291
+wandb:    val_auc/dataloader_idx_2 0.83164
+wandb:    val_auc/dataloader_idx_3 0.84612
+wandb:    val_auc/dataloader_idx_4 0.83169
+wandb:    val_auc/dataloader_idx_5 0.81613
+wandb:    val_auc/dataloader_idx_6 0.82169
+wandb:    val_auc/dataloader_idx_7 0.80521
+wandb:    val_auc/dataloader_idx_8 0.7876
+wandb:    val_auc/dataloader_idx_9 0.76951
+wandb:   val_loss/dataloader_idx_0 0.2822
+wandb:   val_loss/dataloader_idx_1 0.29077
+wandb:  val_loss/dataloader_idx_10 0.30836
+wandb:  val_loss/dataloader_idx_11 0.31719
+wandb:   val_loss/dataloader_idx_2 0.26106
+wandb:   val_loss/dataloader_idx_3 0.26715
+wandb:   val_loss/dataloader_idx_4 0.28984
+wandb:   val_loss/dataloader_idx_5 0.29258
+wandb:   val_loss/dataloader_idx_6 0.28075
+wandb:   val_loss/dataloader_idx_7 0.28971
+wandb:   val_loss/dataloader_idx_8 0.32046
+wandb:   val_loss/dataloader_idx_9 0.31525
+wandb: 
+wandb: 🚀 View run tmaml-sequential-2013-2024-2022-seed-11 at: https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2/runs/6ve3x1ob
+wandb: ⭐️ View project at: https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: /gpfs/scratch/slj9342/wandb/wandb/run-20260129_021959-6ve3x1ob/logs
+wandb: Tracking run with wandb version 0.19.8
+wandb: Run data is saved locally in /gpfs/scratch/slj9342/wandb/wandb/run-20260129_230437-v81m2rgx
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run tmaml-sequential-2013-2024-2023-seed-11
+wandb: ⭐️ View project at https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2
+wandb: 🚀 View run at https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2/runs/v81m2rgx
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:612: UserWarning: Checkpoint directory /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/checkpoints/la_maml_clinical_v2/tmaml-sequential-2013-2024/seed-11 exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name     | Type                          | Params
+-----------------------------------------------------------
+0 | model    | BertForSequenceClassification | 124 M 
+1 | val_auc  | BinaryAUROC                   | 0     
+2 | test_auc | BinaryAUROC                   | 0     
+-----------------------------------------------------------
+124 M     Trainable params
+0         Non-trainable params
+124 M     Total params
+497.772   Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:430: PossibleUserWarning: The dataloader, val_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 48 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:430: PossibleUserWarning: The dataloader, train_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 48 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+Restoring states from the checkpoint path at /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/checkpoints/la_maml_clinical_v2/tmaml-sequential-2013-2024/seed-11/best-checkpoint-2023.ckpt
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+Loaded model weights from the checkpoint at /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/checkpoints/la_maml_clinical_v2/tmaml-sequential-2013-2024/seed-11/best-checkpoint-2023.ckpt
+SLURM auto-requeueing enabled. Setting signal handlers.
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:430: PossibleUserWarning: The dataloader, test_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 48 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 0    ┃   DataLoader 1    ┃   DataLoader 2   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.81081420183181… │ 0.82143121957778… │ 0.8454760909080… │
+│     test_loss     │ 0.27381652593612… │ 0.31381812691688… │ 0.2659324109554… │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 3    ┃   DataLoader 4    ┃   DataLoader 5   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.83726584911346… │ 0.840398371219635 │ 0.8347119688987… │
+│     test_loss     │ 0.27166286110877… │ 0.29638463258743… │ 0.2692742943763… │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 6    ┃   DataLoader 7    ┃   DataLoader 8   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.80734008550643… │ 0.80840086936950… │ 0.7912696003913… │
+│     test_loss     │ 0.304077684879303 │ 0.27894416451454… │ 0.3237445950508… │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Runningstage.tes… ┃                   ┃                   ┃                  ┃
+┃      metric       ┃   DataLoader 9    ┃   DataLoader 10   ┃  DataLoader 11   ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│     test_auc      │ 0.76648628711700… │ 0.77446061372756… │ 0.7451515197753… │
+│     test_loss     │ 0.31441774964332… │ 0.31062039732933… │ 0.3181774616241… │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+/gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/utilities/parsing.py:197: UserWarning: Attribute 'model' is an instance of `nn.Module` and is already saved during checkpointing. It is recommended to ignore them using `self.save_hyperparameters(ignore=['model'])`.
+  rank_zero_warn(
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb:                       epoch ▁▁▁▁▁▁▁▁▁▁▁▂▂▄▄▄▄▄▅▅▅▅▅▅▅▇▇▇▇▇▇▇▇███████
+wandb:             meta_loss_epoch █▆▅▄▃▁
+wandb:              meta_loss_step ▁▁▄▆▄▂▄▁▂█▇▃▃▄▃▃▂▅▃▁▂▁▁▂▂▁▂▂▄▁▇▆▂▄▂▃▂▄▃▂
+wandb:                    test_auc ▆▆█▇█▇▅▅▄▂▃▁
+wandb:   test_auc/dataloader_idx_0 ▁
+wandb:   test_auc/dataloader_idx_1 ▁
+wandb:  test_auc/dataloader_idx_10 ▁
+wandb:  test_auc/dataloader_idx_11 ▁
+wandb:   test_auc/dataloader_idx_2 ▁
+wandb:   test_auc/dataloader_idx_3 ▁
+wandb:   test_auc/dataloader_idx_4 ▁
+wandb:   test_auc/dataloader_idx_5 ▁
+wandb:   test_auc/dataloader_idx_6 ▁
+wandb:   test_auc/dataloader_idx_7 ▁
+wandb:   test_auc/dataloader_idx_8 ▁
+wandb:   test_auc/dataloader_idx_9 ▁
+wandb:  test_loss/dataloader_idx_0 ▁
+wandb:  test_loss/dataloader_idx_1 ▁
+wandb: test_loss/dataloader_idx_10 ▁
+wandb: test_loss/dataloader_idx_11 ▁
+wandb:  test_loss/dataloader_idx_2 ▁
+wandb:  test_loss/dataloader_idx_3 ▁
+wandb:  test_loss/dataloader_idx_4 ▁
+wandb:  test_loss/dataloader_idx_5 ▁
+wandb:  test_loss/dataloader_idx_6 ▁
+wandb:  test_loss/dataloader_idx_7 ▁
+wandb:  test_loss/dataloader_idx_8 ▁
+wandb:  test_loss/dataloader_idx_9 ▁
+wandb:                   test_year ▁▂▂▃▄▄▅▅▆▇▇█
+wandb:         trainer/global_step ▁▁▁▁▁▂▂▂▂▂▃▃▃▃▃▃▃▄▄▄▄▄▄▄▄▅▅▆▆▆▆▆▇▇▇█████
+wandb:    val_auc/dataloader_idx_0 ▅██▆▁▂
+wandb:    val_auc/dataloader_idx_1 ▅█▅▆▁▄
+wandb:   val_auc/dataloader_idx_10 ▆██▇▄▁
+wandb:   val_auc/dataloader_idx_11 ▁▆▆▂▇█
+wandb:    val_auc/dataloader_idx_2 ▇█▅▅▂▁
+wandb:    val_auc/dataloader_idx_3 ▄▇█▃▅▁
+wandb:    val_auc/dataloader_idx_4 ▇██▇▃▁
+wandb:    val_auc/dataloader_idx_5 ▃█▆▇▄▁
+wandb:    val_auc/dataloader_idx_6 ▆█▆▆▁▁
+wandb:    val_auc/dataloader_idx_7 ▄█▄▇▅▁
+wandb:    val_auc/dataloader_idx_8 ▇██▇▄▁
+wandb:    val_auc/dataloader_idx_9 ▆▇█▇▃▁
+wandb:   val_loss/dataloader_idx_0 ▃▂▄▁▂█
+wandb:   val_loss/dataloader_idx_1 ▃▃▅▁▂█
+wandb:  val_loss/dataloader_idx_10 ▂▁▂▁▃█
+wandb:  val_loss/dataloader_idx_11 █▆▆▅▃▁
+wandb:   val_loss/dataloader_idx_2 ▁▁▄▁▂█
+wandb:   val_loss/dataloader_idx_3 ▃▂▃▁▁█
+wandb:   val_loss/dataloader_idx_4 ▂▂▃▁▂█
+wandb:   val_loss/dataloader_idx_5 ▃▂▃▁▂█
+wandb:   val_loss/dataloader_idx_6 ▃▂▄▁▃█
+wandb:   val_loss/dataloader_idx_7 ▆▂▆▁▁█
+wandb:   val_loss/dataloader_idx_8 ▄▁▂▁▃█
+wandb:   val_loss/dataloader_idx_9 ▃▁▂▁▄█
+wandb: 
+wandb: Run summary:
+wandb:                       epoch 6
+wandb:             meta_loss_epoch 0.16781
+wandb:              meta_loss_step 0.189
+wandb:                    test_auc 0.74515
+wandb:   test_auc/dataloader_idx_0 0.81081
+wandb:   test_auc/dataloader_idx_1 0.82143
+wandb:  test_auc/dataloader_idx_10 0.77446
+wandb:  test_auc/dataloader_idx_11 0.74515
+wandb:   test_auc/dataloader_idx_2 0.84548
+wandb:   test_auc/dataloader_idx_3 0.83727
+wandb:   test_auc/dataloader_idx_4 0.8404
+wandb:   test_auc/dataloader_idx_5 0.83471
+wandb:   test_auc/dataloader_idx_6 0.80734
+wandb:   test_auc/dataloader_idx_7 0.8084
+wandb:   test_auc/dataloader_idx_8 0.79127
+wandb:   test_auc/dataloader_idx_9 0.76649
+wandb:  test_loss/dataloader_idx_0 0.27382
+wandb:  test_loss/dataloader_idx_1 0.31382
+wandb: test_loss/dataloader_idx_10 0.31062
+wandb: test_loss/dataloader_idx_11 0.31818
+wandb:  test_loss/dataloader_idx_2 0.26593
+wandb:  test_loss/dataloader_idx_3 0.27166
+wandb:  test_loss/dataloader_idx_4 0.29638
+wandb:  test_loss/dataloader_idx_5 0.26927
+wandb:  test_loss/dataloader_idx_6 0.30408
+wandb:  test_loss/dataloader_idx_7 0.27894
+wandb:  test_loss/dataloader_idx_8 0.32374
+wandb:  test_loss/dataloader_idx_9 0.31442
+wandb:                   test_year 2024
+wandb:         trainer/global_step 109290
+wandb:    val_auc/dataloader_idx_0 0.81515
+wandb:    val_auc/dataloader_idx_1 0.82153
+wandb:   val_auc/dataloader_idx_10 0.76169
+wandb:   val_auc/dataloader_idx_11 0.7578
+wandb:    val_auc/dataloader_idx_2 0.82617
+wandb:    val_auc/dataloader_idx_3 0.84567
+wandb:    val_auc/dataloader_idx_4 0.82781
+wandb:    val_auc/dataloader_idx_5 0.81434
+wandb:    val_auc/dataloader_idx_6 0.81758
+wandb:    val_auc/dataloader_idx_7 0.80138
+wandb:    val_auc/dataloader_idx_8 0.77832
+wandb:    val_auc/dataloader_idx_9 0.76319
+wandb:   val_loss/dataloader_idx_0 0.29917
+wandb:   val_loss/dataloader_idx_1 0.3083
+wandb:  val_loss/dataloader_idx_10 0.32533
+wandb:  val_loss/dataloader_idx_11 0.3083
+wandb:   val_loss/dataloader_idx_2 0.27729
+wandb:   val_loss/dataloader_idx_3 0.2817
+wandb:   val_loss/dataloader_idx_4 0.30964
+wandb:   val_loss/dataloader_idx_5 0.30886
+wandb:   val_loss/dataloader_idx_6 0.29418
+wandb:   val_loss/dataloader_idx_7 0.29703
+wandb:   val_loss/dataloader_idx_8 0.33563
+wandb:   val_loss/dataloader_idx_9 0.32493
+wandb: 
+wandb: 🚀 View run tmaml-sequential-2013-2024-2023-seed-11 at: https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2/runs/v81m2rgx
+wandb: ⭐️ View project at: https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: /gpfs/scratch/slj9342/wandb/wandb/run-20260129_230437-v81m2rgx/logs
+wandb: Tracking run with wandb version 0.19.8
+wandb: Run data is saved locally in /gpfs/scratch/slj9342/wandb/wandb/run-20260130_162000-cki3v187
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run tmaml-sequential-2013-2024-2024-seed-11
+wandb: ⭐️ View project at https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2
+wandb: 🚀 View run at https://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2/runs/cki3v187
+Skipping year 2024: TMAML requires future year at index 12, but only 12 training years are available.
+Saved results to: /gpfs/data/oermannlab/users/slj9342/la_maml_clinical_v2/results/la_maml_clinical_v2/tmaml-sequential-2013-2024/tmaml-sequential-2013-2024-seed-11.csv
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mtmaml-sequential-2013-2024-2024-seed-11[0m at: [34mhttps://wandb.ai/lakej98-nyu-langone-health/la_maml_clinical_v2/runs/cki3v187[0m
+[1;34mwandb[0m: Find logs at: [1;35m../../../../../scratch/slj9342/wandb/wandb/run-20260130_162000-cki3v187/logs[0m
+============================================
+End time: Fri Jan 30 16:20:05 EST 2026
+Job completed successfully

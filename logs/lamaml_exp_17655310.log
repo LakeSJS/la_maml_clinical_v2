@@ -1150,3 +1150,4 @@ SLURM auto-requeueing enabled. Setting signal handlers.
   rank_zero_warn(
 /gpfs/data/oermannlab/users/slj9342/.conda/envs/amazon_fashion_env/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:430: PossibleUserWarning: The dataloader, train_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 48 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
   rank_zero_warn(
+[2026-01-27T16:29:39.004] error: *** JOB 17655310 ON a100-4014 CANCELLED AT 2026-01-27T16:29:39 DUE TO TIME LIMIT ***
