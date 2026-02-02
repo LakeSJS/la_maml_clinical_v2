@@ -47,6 +47,63 @@ python scripts/run_experiment.py \
     --max-epochs 1
 ```
 
+## Analysis Checklist
+
+Use this checklist to ensure all prerequisite experiments are complete before running the evaluation scripts in `src/lamaml_clinical/evaluation/plotting.py`.
+
+
+### Temporal Falloff
+- [ ] `traditional_nonseq_2013_2024`
+-- seed 10 []
+-- seed 11 []
+-- seed 12 []
+-- seed 13 []
+-- seed 14 []
+- [ ] `traditional_nonseq_2013_2018`
+-- seed 10 []
+-- seed 11 []
+-- seed 12 [x]
+-- seed 13 []
+-- seed 14 []
+- [ ] `lamaml_seq_2019_2024`
+-- seed 10 []
+-- seed 11 []
+-- seed 12 []
+-- seed 13 []
+-- seed 14 []
+- [ ] `cmaml_seq_2019_2024`
+-- seed 10 []
+-- seed 11 []
+-- seed 12 []
+-- seed 13 []
+-- seed 14 []
+- [ ] `trad_sequential_2019_2024`
+-- seed 10 []
+-- seed 11 []
+-- seed 12 []
+-- seed 13 []
+-- seed 14 []
+
+### Sequential Comparison – CMAML vs TMAML
+- [ ] `trad_seq_2013_2024`
+-- seed 10 [x]
+-- seed 11 [x]
+-- seed 12 [x]
+-- seed 13 []
+-- seed 14 []
+- [ ] `cmaml_seq_2013_2024`
+-- seed 10 [*]
+-- seed 11 [*]
+-- seed 12 []
+-- seed 13 [*]
+-- seed 14 []
+- [ ] `tmaml_seq_2013_2024`
+-- seed 10 [x]
+-- seed 11 [x]
+-- seed 12 [*]
+-- seed 13 [*]
+-- seed 14 []
+
 ### SLURM Submission
 
 ```bash
