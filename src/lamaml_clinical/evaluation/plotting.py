@@ -92,7 +92,7 @@ def add_line(
 def per_seed_differences(
     baseline_df: pd.DataFrame,
     method_df: pd.DataFrame,
-) -> Tuple[List[float], set]:
+) -> Tuple[pd.DataFrame, set]:
     """
     Compute per-seed differences between baseline and method.
 
@@ -101,21 +101,37 @@ def per_seed_differences(
         method_df: Method results DataFrame
 
     Returns:
-        Tuple of (list of differences, set of missing seeds)
+        Tuple of (DataFrame with per-(seed, test_year) differences, set of missing (seed, test_year))
     """
-    baseline_values = baseline_df["test_auc"].values
-    baseline_seeds = baseline_df["seed"].values
-    method_values = method_df["test_auc"].values
-    method_seeds = method_df["seed"].values
+    key_cols = ["seed", "test_year", "test_auc"]
+    missing = set()
 
-    common = set(baseline_seeds) & set(method_seeds)
-    baseline_lookup = dict(zip(baseline_seeds, baseline_values))
-    method_lookup = dict(zip(method_seeds, method_values))
+    if not set(key_cols).issubset(set(baseline_df.columns).union(method_df.columns)):
+        raise ValueError(
+            "Baseline and method DataFrames must include seed, test_year, and test_auc"
+        )
 
-    diffs = [method_lookup[seed] - baseline_lookup[seed] for seed in common]
-    missing = (set(baseline_seeds) | set(method_seeds)) - common
+    baseline = (
+        baseline_df[key_cols]
+        .dropna(subset=["seed", "test_year"])
+        .rename(columns={"test_auc": "baseline_auc"})
+    )
+    method = (
+        method_df[key_cols]
+        .dropna(subset=["seed", "test_year"])
+        .rename(columns={"test_auc": "method_auc"})
+    )
 
-    return diffs, missing
+    merged = baseline.merge(method, on=["seed", "test_year"], how="outer", indicator=True)
+
+    missing_rows = merged[merged["_merge"] != "both"]
+    if not missing_rows.empty:
+        missing = set(zip(missing_rows["seed"], missing_rows["test_year"]))
+
+    diffs = merged[merged["_merge"] == "both"].copy()
+    diffs["test_auc"] = diffs["method_auc"] - diffs["baseline_auc"]
+
+    return diffs[["seed", "test_year", "test_auc"]], missing
 
 
 def summarize_differences(diffs: Iterable[float]) -> Tuple[float, float]:
@@ -157,9 +173,12 @@ def load_results(
         experiment_folders = {
             "trad-nonseq-2013-2024": "traditional-nonsequential-2013-2024",
             "trad-nonseq-2013-2018": "traditional-nonsequential-2013-2018",
+            "trad-seq-2013-2024": "traditional-sequential-2013-2024",
+            "cmaml-seq-2013-2024": "cmaml-sequential-2013-2024",
+            "tmaml-seq-2013-2024": "tmaml-sequential-2013-2024",
             "trad-seq-2019-2024": "traditional-sequential-2019-2024",
             "cmaml-seq-2019-2024": "cmaml-sequential-2019-2024",
-            "lamaml-seq-2019-2024": "lamaml-sequential-2019-2024",
+            "tmaml-seq-2019-2024": "tmaml-sequential-2019-2024",
         }
 
     frames = []
@@ -245,6 +264,52 @@ def make_temporal_falloff_plot(
 
     return fig
 
+def make_sequential_comparison_plot(
+    results_df: pd.DataFrame,
+    title: str="Sequential Comparison",
+    ylim: Tuple[float, float] = (0.79, 0.865),
+) -> plt.Figure:
+    """
+    Create sequential comparison plot showing performance differences between methods.
+
+    Args:
+        results_df: Aggregated results DataFrame
+        diff_key: Key for the difference to plot
+        title: Plot title
+        ylim: Y-axis limits
+
+    Returns:
+        Matplotlib figure
+    """
+    fig, ax = plt.subplots(figsize=FIG_SIZE)
+    ax.set_title(title)
+
+    # Baseline model (traditional sequential training from 2013-2024)
+    baseline_df = results_df[results_df["experiment"] == "trad-seq-2013-2024"]
+
+    # CMAML sequential training from 2013-2024
+    cmaml_df = results_df[results_df["experiment"] == "cmaml-seq-2013-2024"]
+    cmaml_diff, cmaml_missing = per_seed_differences(baseline_df, cmaml_df)
+
+    # TMAML sequential training from 2013-2024
+    tmaml_df = results_df[results_df["experiment"] == "tmaml-seq-2013-2024"]
+    # increment tmaml years by 1 because of temporal mechanism - this should be changed if rerunnnig the experiment with an increased temporal step
+    tmaml_df["train_year"] = tmaml_df["train_year"].astype(int) + 1
+    tmaml_df["train_year"] = tmaml_df["train_year"].astype(str)
+    tmaml_diff, tmaml_missing = per_seed_differences(baseline_df, tmaml_df)
+
+
+    # Plot the differences between the baseline and the sequential models
+    add_line(ax, compute_summary(cmaml_diff), "red", "CMAML Sequential")
+    add_line(ax, compute_summary(tmaml_diff), "green", "TMAML Sequential")
+    ax.set_xlabel("Test Year")
+    ax.set_ylabel("Test AUC")
+    ax.set_xticks(np.arange(2013, 2025, 1))
+    ax.set_ylim(*ylim)
+    ax.legend()
+    fig.tight_layout()
+
+    return fig
 
 def save_plot(fig: plt.Figure, output_path: Path) -> None:
     """Save figure to file."""
@@ -301,6 +366,13 @@ def main() -> None:
                 "Temporal Falloff - LA-MAML Sequential",
             ),
             "temporal_falloff_lamaml.png",
+        ),
+        (
+            make_sequential_comparison_plot(
+                results_df,
+                "Sequential Comparison - CMAML vs TMAML",
+            ),
+            "sequential_comparison_cmaml_tmaml.png",
         ),
     ]
 
