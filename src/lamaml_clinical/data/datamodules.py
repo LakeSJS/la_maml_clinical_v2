@@ -128,16 +128,34 @@ class TemporalDataModule(pl.LightningDataModule):
             set(unique_train_years) & set(unique_val_years) & set(unique_test_years)
         )
 
+        def _parquet_ready(path: Path) -> bool:
+            """Return True when a parquet file already exists and is non-empty."""
+            try:
+                return path.exists() and path.stat().st_size > 0
+            except OSError:
+                return False
+
+        def _year_has_all_parquet(year: int) -> bool:
+            return all(
+                _parquet_ready(self.data_dir / f"{split}_{year}.parquet")
+                for split in ("train", "val", "test")
+            )
+
+        if unique_years and all(_year_has_all_parquet(year) for year in unique_years):
+            return  # Parquet shards already materialized
+
         for year in unique_years:
-            test_data[test_data["dyear"] == year].to_parquet(
-                self.data_dir / f"test_{year}.parquet"
-            )
-            val_data[val_data["dyear"] == year].to_parquet(
-                self.data_dir / f"val_{year}.parquet"
-            )
-            train_data[train_data["dyear"] == year].to_parquet(
-                self.data_dir / f"train_{year}.parquet"
-            )
+            test_path = self.data_dir / f"test_{year}.parquet"
+            if not _parquet_ready(test_path):
+                test_data[test_data["dyear"] == year].to_parquet(test_path)
+
+            val_path = self.data_dir / f"val_{year}.parquet"
+            if not _parquet_ready(val_path):
+                val_data[val_data["dyear"] == year].to_parquet(val_path)
+
+            train_path = self.data_dir / f"train_{year}.parquet"
+            if not _parquet_ready(train_path):
+                train_data[train_data["dyear"] == year].to_parquet(train_path)
 
     def setup(self, stage: Optional[str] = None) -> None:
         """
